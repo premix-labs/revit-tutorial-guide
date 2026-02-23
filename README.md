@@ -1,5 +1,9 @@
 # Starlight Starter Kit: Basics
 
+[![Deploy to GitHub Pages](https://github.com/premix-labs/revit-tutorial-guide/actions/workflows/deploy.yml/badge.svg)](https://github.com/premix-labs/revit-tutorial-guide/actions/workflows/deploy.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fpremix-labs.github.io%2Frevit-tutorial-guide%2F&up_message=live&down_message=down&label=website)](https://premix-labs.github.io/revit-tutorial-guide/)
+[![Last Commit](https://img.shields.io/github/last-commit/premix-labs/revit-tutorial-guide)](https://github.com/premix-labs/revit-tutorial-guide/commits/master)
+
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
 ```
