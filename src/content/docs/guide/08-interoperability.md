@@ -19,7 +19,7 @@ sidebar:
 ### เตรียมตัว
 
 1.  ดาวน์โหลด **CSiXRevit Plugin** จากเว็บไซต์ CSI (https://www.csiamerica.com)
-2.  ติดตั้งให้ตรงกับเวอร์ชัน Revit ที่ใช้ (เช่น CSiXRevit for Revit 2024)
+2.  ติดตั้งให้ตรงกับเวอร์ชัน Revit ที่ใช้ (เช่น CSiXRevit for Revit 2026)
 3.  รีสตาร์ท Revit -> จะเห็น Tab **Add-Ins** มีเมนู CSi เพิ่มขึ้นมา
 
 ### A. Export จาก Revit ไป ETABS

@@ -11,7 +11,7 @@ sidebar:
 
 ### วิธีที่ 1: Tag ทีเดียวทั้งแปลน (Tag All)
 
-1.  ไปที่แปลน **Level 1**
+1.  ไปที่แปลน **1F**
 2.  คำสั่ง **Annotate > Tag All Not Tagged** (ไม่มีคีย์ลัด)
 3.  หน้าต่าง Tag All จะเปิดขึ้น เลือก Category ที่ต้องการ:
     - ✅ **Structural Column Tags** (ป้ายเสา)
@@ -46,7 +46,7 @@ sidebar:
 | 3     | Count           | จำนวน               |
 | 4     | Volume          | ปริมาตรคอนกรีต (m³) |
 
-4.  กดปุ่ม **Add ->** เพื่อย้าย Field ไปฝั่งขวา
+4.  คลิก **Add ->** เพื่อย้าย Field ไปฝั่งขวา
 5.  ไปที่ Tab **Sorting/Grouping:**
     - **Sort by:** `Family and Type`
     - ติ๊ก ✅ **Grand Totals**
@@ -70,13 +70,15 @@ sidebar:
 | 3     | Shape            | รูปร่าง                   |
 | 4     | Quantity         | จำนวนเส้น                 |
 | 5     | Total Bar Length | ความยาวรวม (m)            |
-| 6     | Total Weight     | น้ำหนักรวม (kg)           |
+
+> [!WARNING]
+> **น้ำหนักเหล็กหายไปไหน?** ใน Revit แบบมาตรฐานจะไม่มี Field `Total Weight` หรือน้ำหนักเหล็กให้โดยตรง (ต้องเขียนสูตร หรือใช้ Plugin) วิธีแก้ยอดนิยมคือให้ดึงข้อมูล `Total Bar Length` นี้ออกมาเป็นตาราง แล้วเอาไปคูณกับ "น้ำหนักเหล็กต่อเมตร" ใน Excel (เช่น DB12 = 0.888 กก./ม.) ครับ!
 
 4.  **Sorting:** Sort by `Bar Diameter`
-5.  ติ๊ก **Grand Totals** + **Calculate totals** สำหรับ Total Weight
+5.  ติ๊ก **Grand Totals** + **Calculate totals** สำหรับ Total Bar Length
 6.  กด OK
 
-**ผลลัพธ์:** ได้รายการเหล็กครบถ้วน พร้อมน้ำหนักรวมสำหรับถอดราคา BOQ!
+**ผลลัพธ์:** ได้รายการความยาวเหล็กทั้งหมด พร้อมเอาไปคำนวณน้ำหนักเหล็กเพื่อทำราคา BOQ ต่อได้เลย!
 
 ---
 
@@ -90,7 +92,7 @@ sidebar:
     - `A3 Metric` (กระดาษ A3) สำหรับรูปตัดย่อย
 3.  กรอกข้อมูล Title Block:
     - **Sheet Number:** เช่น `S-101`
-    - **Sheet Name:** เช่น `STRUCTURAL PLAN - LEVEL 1`
+    - **Sheet Name:** เช่น `STRUCTURAL PLAN - 1F`
 
 ### ระบบการตั้งชื่อ Sheet (แนะนำ)
 
@@ -106,10 +108,23 @@ sidebar:
 ### วาง View ลงใน Sheet
 
 1.  **ลาก (Drag & Drop):** จาก Project Browser ลาก View ที่ต้องการมาวางลงในกระดาษ:
-    - แปลนพื้น (Level 1 Plan)
+    - แปลนพื้น (1F Plan)
     - รูปตัด (Section)
     - ตาราง (Schedule)
 2.  จัดตำแหน่งให้สวยงาม (Revit จะ Snap ให้อัตโนมัติ)
+
+### ปรับสีกราฟิกแบบมือโปร (Visibility/Graphics)
+
+เพื่อให้แบบแปลนอ่านง่าย สถาปนิกและวิศวกรทุกคนต้องใช้คำสั่งนี้:
+
+1. เปิดแปลน **1F** (ต้องปิด Properties หรือไม่ได้เลือกอะไรอยู่)
+2. กดคีย์ลัด **`VV`** (Visibility/Graphic Overrides)
+3. หาหมวด **Structural Columns** ในตะกร้า Model Categories
+4. ไปที่คอลัมน์ **Cut > Patterns** -> คลิกช่อง `Override...`
+5. ช่อง Foreground Pattern เลือกขีดๆ แบบกากบาท (`Diagonal crosshatch`) หรือ `Solid fill` เปลี่ยนเป็นสีเทา -> กด OK
+6. ทำแบบเดียวกันกับหมวด **Walls** (ผนัง) ให้เป็น `Solid fill` สีเทาเข้ม
+7. กด **OK** ออกมาดูผลลัพธ์ -> เสาและผนังรับแรงของคุณจะถูกถมสีอย่างสวยงามแบบมืออาชีพ!
+8. _(ขั้นสูง: สามารถบันทึกการตั้งค่านี้เป็น View Template เพื่อไปแปะใช้กับแปลน 2F - 30F ได้ในคลิกเดียว)_
 
 ### เพิ่ม Dimension (มิติบอกขนาด)
 

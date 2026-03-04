@@ -54,7 +54,7 @@ sidebar:
 
 **วิธีแก้:**
 
-1.  ตั้ง **Detail Level = Fine** (แถบล่าง)
+1.  ตั้ง **Detail Level** เป็น **Fine** (ที่ **View Control Bar** ด้านล่างซ้าย)
 2.  ตั้ง **Visual Style = Hidden Line** (ไม่ใช่ Wireframe)
 3.  ถ้ายังไม่เห็น ลองเปิด **View > Visibility/Graphics** (`VG`):
     - หา Category **Structural Rebar** -> ติ๊ก ✅ ให้แสดง

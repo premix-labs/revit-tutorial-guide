@@ -22,13 +22,33 @@ sidebar:
 
 ## ✍️ Tutorial: ขึ้นโมเดลคอนโด 30 ชั้น
 
-### 1. สร้างเสา (Structural Columns)
+### 1. สร้างฐานราก (Isolated Foundation)
+
+ก่อนจะสร้างเสา เราควรมีฐานรากมารองรับการถ่ายน้ำหนักสู่ชั้นดินก่อนครับ:
+
+**ขั้นตอนสร้างฐานราก F1:**
+
+1. ไปที่แปลน **1F** (Project Browser > Structural Plans > 1F)
+2. คำสั่ง **Structure > Foundation > Isolated**
+3. ใน Properties เลือก Family: `M_Footing-Rectangular` (ถ้าไม่มีให้ Load Family จาก `Structural > Foundations`)
+4. กด **Edit Type** -> **Duplicate** -> ตั้งชื่อ: `F1 (2000x2000x500)`
+5. แก้ค่า Parameter:
+   - **Width:** `2000` (mm) หรือ `2.00` (m)
+   - **Length:** `2000` หรือ `2.00`
+   - **Thickness:** `500` หรือ `0.50`
+6. กด **OK**
+7. คลิกปุ่ม **At Grids** -> ลากเมาส์ครอบจุดตัด Grid ทั้งหมด -> กด **Finish** ✅
+8. ฐานรากทั้ง 24 ฐานจะปรากฏอยู่ใต้ระดับ **1F** โดยอัตโนมัติ เนื่องจาก Revit ถูกตั้งค่าให้วางฐานรากจมลงสู่ชั้นผิวดิน (Below Level) เสมอ ซึ่งสอดคล้องกับพฤติกรรมการก่อสร้างจริง
+
+---
+
+### 2. สร้างเสา (Structural Columns)
 
 **เสา C1 ขนาด 800×800 มม.**
 
 **ขั้นตอนสร้าง Type ใหม่:**
 
-1.  ไปที่แปลน **Level 1** (Structural Plans)
+1.  ไปที่แปลน **1F** (Structural Plans)
 2.  คำสั่ง **Structure > Column > Structural Column** (หรือกด `CL`)
 3.  ใน **Properties Palette** (แถบซ้าย) คลิกที่ชื่อ Type ปัจจุบัน
 4.  เลือก Family: `M_Concrete-Rectangular-Column`
@@ -44,8 +64,8 @@ sidebar:
 
 1.  มองที่ **Options Bar** (แถบใต้ Ribbon):
     - **Depth:** เปลี่ยนเป็น **Height**
-    - **Level:** เลือก **Level 2** (เสาจะสูงจาก 1F ถึง 2F)
-2.  คลิกปุ่ม **At Grids** (ในแถบ Modify | Place Structural Column)
+    - **Level:** เลือก **2F** (เสาจะสูงจาก 1F ถึง 2F)
+2.  คลิก **At Grids** ใน Contextual Tab **Modify | Place Structural Column**
 3.  ลากเมาส์ครอบ Grid ทั้งเส้นแนวตั้ง (A-F) และแนวนอน (1-4) ทั้งหมด
 4.  กด **Finish** (เครื่องหมายถูกสีเขียว ✅)
 5.  ผลลัพธ์: เสา 24 ต้น ปรากฏขึ้นมาครบทุกจุดตัด Grid!
@@ -63,7 +83,8 @@ sidebar:
 
 1.  คำสั่ง **Structure > Beam** (หรือกด `BM`)
 2.  ใน Properties เลือก Family: `M_Concrete-Rectangular-Beam`
-    - ถ้าไม่มี: **Load Family** -> `Structural > Framing > Concrete`
+    - **ถ้าหาไม่เจอ (สำหรับ Revit 2025/2026):** ให้ไปที่แท็บ **Insert > Load Autodesk Family** (ไอคอนรูปก้อนเมฆ)
+    - ปรับภาษาเป็น English ค้นหาคำว่า `Concrete Rectangular Beam` แล้วคลิกใช้งานได้เลย (สะดวกรวดเร็วกว่าการโหลดผ่านไฟล์แบบเดิม)
 3.  **Edit Type** -> **Duplicate** -> ตั้งชื่อ: `B1 (300x600)`
 4.  แก้ค่า:
     - **b:** `300` (mm) หรือ `0.30` (m)
@@ -72,7 +93,7 @@ sidebar:
 
 **ขั้นตอนวางคาน (On Grids — วิธีเร็วสุด!):**
 
-1.  กดปุ่ม **On Grids** (ในแถบ Modify | Place Beam)
+1.  คลิก **On Grids** ใน Contextual Tab **Modify | Place Beam**
 2.  ลากเมาส์ครอบ Grid ทั้งหมด
 3.  กด **Finish** ✅
 4.  ผลลัพธ์: คานทุกแนว Grid ปรากฏขึ้นมาอัตโนมัติ!
@@ -92,7 +113,7 @@ sidebar:
 2.  ใน Properties ให้เช็คว่าเป็น **Structural** (ไม่ใช่ Architectural)
     - ถ้าไม่ใช่ ให้คลิกเมนูดรอปดาวน์แล้วเลือก Floor ที่มีคำว่า Structural
 3.  **Edit Type** -> **Duplicate** -> ตั้งชื่อ: `S20`
-4.  กดปุ่ม **Edit Structure** (ตรง Structure Parameter):
+4.  คลิก **Edit Structure** (ตรง Structure Parameter):
     - ในตาราง Layer จะมี 1 แถว (Structure [1])
     - แก้ **Thickness:** `200` (mm) หรือ `0.20` (m)
     - แก้ **Material:** คลิกช่อง Material -> ค้นหาเลือก `Concrete - Cast-in-Place`
@@ -101,11 +122,11 @@ sidebar:
 **ขั้นตอนวาดขอบเขตพื้น:**
 
 1.  โปรแกรมจะเข้าโหมด **Edit Boundary** อัตโนมัติ (เส้นสีม่วง/ชมพู)
-2.  ใช้เครื่องมือ **Pick Lines** (icon เส้นสีเขียว ในแถบ Draw):
-    - คลิกเส้น Grid ด้านนอกทั้ง 4 ด้าน (Grid A, Grid F, Grid 1, Grid 4)
-    - ขอบเขตจะถูกวาดตาม Grid โดยอัตโนมัติ
-3.  ตรวจสอบว่าเป็น **เส้นปิดสนิท** (ไม่มีช่องว่าง)
-4.  กดเครื่องหมายถูก ✅ (**Finish Edit Mode**)
+2.  คลิกเลือกเครื่องมือ **Rectangle** (สี่เหลี่ยมผืนผ้า) ในหมวด Draw (แถบสีเขียวอ่อนด้านบน)
+3.  **คลิกจุดเริ่มต้น:** เล็งไปที่ **จุดกึ่งกลางเสาซ้ายล่างสุด** (จุดตัดระหว่าง Grid A กับ Grid 1) สังเกตสัญลักษณ์หน้าจอให้ขึ้นคำว่า `Intersection` หรือกากบาท แล้วคลิกเมาส์ 1 ที
+4.  **คลิกจุดปลาย:** ลากกรอบทแยงมุมขึ้นไปที่ **จุดกึ่งกลางเสาขวาบนสุด** (จุดตัดระหว่าง Grid F กับ Grid 4) รอให้ขึ้น `Intersection` แล้วคลิกเมาส์อีก 1 ที
+5.  ตรวจสอบว่าเส้นขอบสีชมพูวิ่งผ่านกึ่งกลางเสาทั้ง 24 ต้นพอดี (ครอบตึกทั้งหมด)
+6.  กดเครื่องหมายถูก ✅ (**Finish Edit Mode**)
 
 > [!WARNING]
 > **เส้นต้องปิดสนิท!** ถ้ามีช่องว่างแม้แต่นิดเดียว Revit จะฟ้อง Error: _"The floor/slab is not enclosed"_ ให้ Zoom เข้าไปเช็คมุมทั้ง 4 ว่าเส้นต่อกันสนิทหรือไม่ ถ้าไม่สนิทให้ใช้ **Trim/Extend** (`TR`) แก้ครับ
@@ -116,21 +137,36 @@ sidebar:
 
 ไม่ต้องวาดใหม่ทีละชั้น! ใช้ **Copy to Clipboard + Paste Aligned:**
 
-1.  ไปที่มุมมอง **3D View** (กดรูปบ้าน 🏠 ด้านบน หรือกด `3D`)
-2.  ลากเมาส์ครอบโมเดลทั้งหมดที่ชั้น 1F-2F
+1.  ไปที่มุมมอง **3D View** (กดรูปบ้าน 🏠 ด้านบน)
+2.  ลากเมาส์ครอบโมเดลทั้งหมดที่ชั้น F1
 3.  กด **Filter** (icon กรวย) เลือกเฉพาะ:
-    - ✅ Structural Columns
-    - ✅ Structural Framing
-    - ✅ Floors
-    - ❌ เอาอย่างอื่นออกทั้งหมด (Grids, Levels, etc.)
-4.  กด OK -> กด `Ctrl+C` (Copy to Clipboard)
-5.  กด **Modify > Paste > Aligned to Selected Levels**
-6.  ในหน้าต่าง Level เลือก **Level 3** ถึง **Level 30** (กด Shift ค้างเพื่อเลือกรวด)
+    - ✅ Floors (แผ่นพื้น)
+    - ✅ Structural Columns (เสา)
+    - ✅ Structural Framing (Other) (คาน)
+    - ❌ **เอาติ๊กที่อย่างอื่นออกทั้งหมด!** (เช่น Grids, Levels, Structural Foundations ห้ามก๊อปปี้ขึ้นไปเด็ดขาด)
+4.  กด OK -> กด `Ctrl+C` (หรือไอคอน Copy to Clipboard ด้านบน)
+5.  กดลูกศรใต้คำว่า **Paste > Aligned to Selected Levels**
+6.  ในหน้าต่าง Level เลือก **F2** แล้วกด Shift ค้าง เลื่อนไปคลิก **F30** (เพื่อเลือกรวดเดียว F2-F30)
 7.  กด **OK**
 
 รอสักพัก... **ตูม!** 🏢 คอนโด 30 ชั้นเสร็จสมบูรณ์ครับ!
 
 **เช็คผลลัพธ์:** หมุน 3D View ดู ควรได้อาคาร 30 ชั้น ที่มีเสา คาน และพื้น ครบทุกชั้น
 
-> [!NOTE]
-> **Analytical Model:** หลังจาก Copy เสร็จ ให้เปิดดู Analytical Model (View > Analytical Model) เช็คว่าเส้นสีส้มต่อกันสนิททุกจุด ถ้ามีเส้นลอยไม่ต่อกัน ให้ปรับ Analytical Adjust ก่อนส่งไป ETABS นะครับ
+---
+
+### 5. เช็คความถูกต้อง (Analytical Model) 🔍
+
+เพื่อความมั่นใจ 100% ว่าโครงสร้างเราสามารถส่งไปวิเคราะห์แรง (ETABS/Robot) ได้ต่อเนื่อง เราต้องเช็คเส้นวิเคราะห์ครับ:
+
+1. ในหน้าจอ 3D View พิมพ์ `VV` (หรือ `VG`) เพื่อเปิด **Visibility/Graphic Overrides**
+2. ไปที่แท็บ **Analytical Model Categories**
+3. ติ๊กถูกที่กล่องแรกสุด **`Show analytical model categories in this view`** ตรวจสอบว่ามีติ๊กถูกหมวดย่อยครบถ้วน แล้วกด OK
+4. **ทำตามข้อนี้ หากไม่เห็นเส้นอะไรปรากฏขึ้น (มักเกิดใน Revit 2025/2026):**
+   - ไปที่แท็บ **Analyze > Analytical Automation** (ไอคอนรูปเฟือง)
+   - เลือกเพลย์ลิสต์ **`Physical to Analytical for Buildings`**
+   - ตรงส่วน Select ให้คลุมดำตึก 30 ชั้นของเราในจอ 3D ให้หมด -> จากนั้นกดปุ่ม **`Run`**
+   - รอโปรแกรมคำนวณสักพัก เส้น Analytical จะถูกเจเนอเรตขึ้นมาทาบตึกเราอย่างสมบูรณ์แบบ!
+
+> [!WARNING]
+> **จุดชี้เป็นชี้ตาย:** ถ้าซูมดูแล้วเส้น Analytical (ตามจุดตัดเสาคาน) **ไม่เชื่อมติดกัน** เป็นจุดลอยๆ โครงสร้างโมเดลนั้นจะคำนวณแรงพังทันทีเมื่อนำไปวิเคราะห์ในโปรแกรมวิศวกรรม ดังนั้นการที่เราเล็งเมาส์ให้ตรง "จุดตัดกริด (Intersection) เป๊ะๆ" ตอนวาดเสร็จและพื้นตั้งแต่สเต็ปแรกจึงสำคัญที่สุดครับ!

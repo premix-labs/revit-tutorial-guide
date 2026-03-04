@@ -19,7 +19,10 @@ sidebar:
 - **หา Family:** คลิกที่ Families
 
 > [!TIP]
-> **ถ้า Project Browser หายไป:** กดคีย์ลัด **`Ctrl+9`** หรือไปที่ **View > User Interface > Project Browser** (ติ๊กเครื่องหมายถูก)
+> **ถ้า Project Browser หรือ Properties หายไป:**
+>
+> - วิธีที่ชัวร์ที่สุดคลอบคลุมทุกเวอร์ชัน: **คลิกขวาที่พื้นที่ว่างหน้าจอ -> เลือก Browsers > Project Browser** (หรือคลิก Properties)
+> - หรือไปที่ Ribbon: **View > User Interface > ติ๊กเครื่องหมายถูกที่ Project Browser / Properties** ก็ได้ครับ
 
 ### 2. Properties Palette (สำคัญมาก ⭐)
 
@@ -78,6 +81,6 @@ sidebar:
 | `PP`     | Properties Palette | ทั่วไป     |
 | `Ctrl+Z` | Undo               | ทั่วไป     |
 | `Ctrl+C` | Copy to Clipboard  | 04         |
-| `Ctrl+P` | Print              | 06         |
+| `Ctrl+P` | Print              | 07         |
 
 ทำความคุ้นเคยกับส่วนต่างๆ เหล่านี้ไว้นะครับ เดี๋ยวเราจะได้ใช้กันตลอดครับ

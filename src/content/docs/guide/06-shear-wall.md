@@ -20,13 +20,13 @@ sidebar:
 
 ### ขั้นที่ 1: สร้าง Wall Type
 
-1.  ไปที่แปลน **Level 1**
+1.  ไปที่แปลน **1F**
 2.  คำสั่ง **Structure > Wall > Structural Wall** (หรือกดคีย์ `WA`)
 3.  ใน **Properties** คลิกชื่อ Type ปัจจุบัน
 4.  เลือก Family: `Basic Wall`
 5.  กด **Edit Type** -> กด **Duplicate...**
 6.  ตั้งชื่อ: `SW30 (300mm)` -> กด OK
-7.  กดปุ่ม **Edit Structure**:
+7.  คลิก **Edit Structure**:
     - แก้ **Thickness** ของ Layer "Structure [1]": `300` (mm)
     - แก้ **Material:** เลือก `Concrete - Cast-in-Place`
 8.  กด OK สองครั้ง
@@ -35,7 +35,7 @@ sidebar:
 
 1.  ใน **Options Bar** (แถบใต้ Ribbon):
     - **Height:** เลือก `Unconnected` พิมพ์ `3000` (mm) หรือ `3.0` (m)
-    - หรือเลือก **Top Constraint:** `Level 2`
+    - หรือเลือก **Top Constraint:** `2F`
     - **Location Line:** เลือก `Wall Centerline`
 2.  คลิกจุดเริ่มต้น -> คลิกจุดปลาย (ตามตำแหน่งแกนลิฟต์จาก ETABS)
 3.  วาดครบทุกด้าน -> กด **Esc** เพื่อจบคำสั่ง
@@ -48,7 +48,7 @@ sidebar:
 1.  เลือกผนังทั้งหมดที่วาด (ลากเมาส์ครอบ -> Filter เลือกเฉพาะ Walls)
 2.  `Ctrl+C` (Copy to Clipboard)
 3.  **Modify > Paste > Aligned to Selected Levels**
-4.  เลือก **Level 3** ถึง **Level 30** (Shift+Click)
+4.  เลือก **2F** ถึง **30F** (Shift+Click)
 5.  กด OK -> ผนังครบทุกชั้น!
 
 ---
@@ -57,23 +57,22 @@ sidebar:
 
 ### เตรียมรูปตัด
 
-1.  ไปที่แปลน Level 1 -> วาด **Section** (`SE`) ตัดผ่านผนังรับแรง
+1.  ไปที่แปลน 1F -> วาด **Section** (`SE`) ตัดผ่านผนังรับแรง
 2.  เปิดรูปตัด -> ตั้ง **Detail Level = Fine**
 
 ### ขั้นที่ 1: เหล็กแนวตั้ง (Vertical — DB16 @500 EF)
 
 1.  คลิกเลือก **ผนัง** ในรูปตัด
-2.  กด **Rebar** (ในแถบ Modify | Walls)
+2.  คลิก **Rebar** ใน Contextual Tab **Modify | Walls**
 3.  ตั้งค่า:
     - **Rebar Shape:** `M_T1 - Straight`
     - **Bar Diameter:** `16` (DB16)
-    - **Placement Orientation:** `Perpendicular to Cover` (เหล็กยาวตามแนวตั้ง)
-4.  คลิกวางที่ **ด้านหน้า** ของผนัง (ชิดระยะหุ้ม)
-5.  **จัดเรียง:**
-    - Layout Rule = **`Maximum Spacing`**
-    - **Spacing:** ใส่ `500` (mm)
-6.  ทำซ้ำอีกครั้งที่ **ด้านหลัง** ของผนัง (อีกหน้าหนึ่ง)
-7.  ผลลัพธ์: เหล็ก DB16 @500 mm ทั้ง 2 หน้า (**Each Face**) ✅
+    - **Placement Orientation:** `Parallel to Work Plane` (ขนานกับหน้าจอ — เหล็กดิ่งยาวขึ้นข้างบน)
+    - **[NEW] Layout:** เปลี่ยนเป็น **`Maximum Spacing`** แล้วใส่ **`500`** (มม.) ทันที (ตั้งค่าก่อนวางเมาส์!)
+4.  ชี้เมาส์ที่ **ด้านหน้า** ของผนัง (ชิดขอบให้เกิดเส้นสีเขียว) -> **ดูเส้น Preview เหล็กกระจายตัวแนวตั้ง**
+5.  คลิกวาง
+6.  ทำซ้ำอีกครั้งที่ **ด้านหลัง** ของผนัง (ขอบอีกฝั่งหนึ่ง)
+7.  ผลลัพธ์: เหล็ก DB16 @500 mm แนวตั้งทั้ง 2 หน้า (**Each Face**) โดยไม่ต้องมานั่งเลือกทีหลัง ✅
 
 ### ขั้นที่ 2: เหล็กแนวนอน (Horizontal — DB12 @150 EF)
 
@@ -81,13 +80,12 @@ sidebar:
 2.  ตั้งค่า:
     - **Rebar Shape:** `M_T1 - Straight`
     - **Bar Diameter:** `12` (DB12)
-    - **Placement Orientation:** `Parallel to Work Plane` (เหล็กขวางตามแนวนอน)
-3.  คลิกวางที่ด้านหน้าผนัง
-4.  **จัดเรียง:**
-    - Layout Rule = **`Maximum Spacing`**
-    - **Spacing:** ใส่ `150` (mm)
+    - **Placement Orientation:** `Perpendicular to Cover` (แทงทะลุหน้าจอ — เหล็กวางขวางเป็นจุดๆ)
+    - **[NEW] Layout:** เปลี่ยนเป็น **`Maximum Spacing`** แล้วใส่ **`150`** (มม.)
+3.  ขยับเมาส์ไปแตะหน้าผนัง -> **ดู Preview เหล็กกางออกเป็นแนวนอน**
+4.  คลิกวางที่ด้านหน้าผนัง
 5.  ทำซ้ำที่ด้านหลังผนัง
-6.  ผลลัพธ์: เหล็ก DB12 @150 mm ทั้ง 2 หน้า ✅
+6.  ผลลัพธ์: เหล็ก DB12 @150 mm ทั้ง 2 หน้าเสร็จสมบูรณ์ ✅
 
 > [!TIP]
 > ใช้ **Propagate Rebar** เพื่อ Copy เหล็กไปผนังชิ้นอื่นที่มี Type เดียวกันได้ทันที (คลิกขวาที่ Rebar Set -> Propagate)
