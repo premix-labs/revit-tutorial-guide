@@ -128,7 +128,7 @@ Pile Cap คือ Block คอนกรีตหัวเสาเข็ม ส
 
 1.  ไปที่แปลน **F1** (Structural Plans)
 2.  คำสั่ง **Structure > Column > Structural Column** (หรือกด `CL`)
-3.  ใน **Properties Palette** (แถบซ้าย) คลิกที่ชื่อ Type ปัจจุบัน
+3.  ใน **Properties** (แถบซ้าย) คลิกที่ชื่อ Type ปัจจุบัน
 4.  เลือก Family: `M_Concrete-Rectangular-Column`
     - ถ้าไม่มี ให้คลิก **Load Family** -> ไปที่โฟลเดอร์ `Structural > Columns > Concrete` -> เลือกไฟล์ `.rfa`
 5.  กด **Edit Type** -> กด **Duplicate...**
@@ -241,7 +241,7 @@ Pile Cap คือ Block คอนกรีตหัวเสาเข็ม ส
     - ✅ Floors (แผ่นพื้น)
     - ✅ Structural Columns (เสา)
     - ✅ Structural Framing (Other) (คาน)
-    - ❌ **เอาติ๊กที่อย่างอื่นออกทั้งหมด!** (เช่น Grids, Levels, Structural Foundations ห้ามก๊อปปี้ขึ้นไปเด็ดขาด)
+    - ❌ **เอาติ๊กที่อย่างอื่นออกทั้งหมด!** (เช่น Grids, Levels, Structural Foundations ห้ามคัดลอกขึ้นไปเด็ดขาด)
 4.  กด OK -> กด `Ctrl+C` (หรือไอคอน Copy to Clipboard ด้านบน)
 5.  กดลูกศรใต้คำว่า **Paste > Aligned to Selected Levels**
 6.  ในหน้าต่าง Level เลือก **F2** แล้วกด Shift ค้าง เลื่อนไปคลิก **F30** (เพื่อเลือกรวดเดียว F2-F30)
@@ -319,7 +319,7 @@ Pile Cap คือ Block คอนกรีตหัวเสาเข็ม ส
 1. ดู Ribbon หมวด **Draw** → คลิก **`Slope Arrow`**
 2. คลิกที่ **จุดเริ่มต้น** ทางลาด (ด้านล่าง/เตี้ย)
 3. ลากไปคลิกที่ **จุดสิ้นสุด** ทางลาด (ด้านบน/สูง)
-4. เลือก Slope Arrow ที่วางไว้ → ดู Properties ซ้ายมือ:
+4. เลือก Slope Arrow ที่วางไว้ → ดูที่ `Properties` ทางซ้ายมือ:
 
 | Property                  | ค่า                                      |
 | ------------------------- | ---------------------------------------- |
@@ -331,6 +331,14 @@ Pile Cap คือ Block คอนกรีตหัวเสาเข็ม ส
 
 > [!TIP]
 > **เช็คความลาด:** มุมลาด (%) = (ความสูงต่าง ÷ ระยะนอน) × 100 เช่น (4500-1550) ÷ 19500 × 100 = **15.1%** ตาม มยผ. ต้องไม่เกิน 20%
+
+> [!IMPORTANT]
+> **Checkpoint หลังตั้ง Slope Arrow**
+> หลัง Finish ให้เปิด 3D หรือ Section ตรวจทันทีว่า:
+> - ด้าน Tail อยู่ที่ระดับเริ่มต้นจริง
+> - ด้าน Head สูงขึ้นตามค่าที่ตั้ง
+> - พื้นเอียงไปในทิศเดียวกับลูกศร ไม่กลับด้าน
+> ถ้าทิศทางหรือระดับสลับกัน ให้กลับไปตรวจ `Height Offset at Tail/Head` และทิศทางของ Slope Arrow ก่อนทำขั้นถัดไป
 
 ### ขั้นที่ 3: ตรวจสอบใน 3D
 

@@ -188,6 +188,10 @@ sidebar:
 | **Layer Settings** | `Export layer properties`     | เก็บชั้นสีและเส้นไว้ครบ        |
 | **Coordinate**     | `Shared`                      | ถ้าตั้ง Shared Coordinates ไว้ |
 
+> [!WARNING]
+> **อย่าเลือก `Coordinate = Shared` ถ้ายังไม่ได้ตั้ง Shared Coordinates จริง**
+> ถ้าโปรเจกต์ยังไม่ได้ Acquire/Publish Shared Coordinates และยังไม่ได้ตรวจตำแหน่งกับไฟล์อ้างอิง ให้ใช้ค่าพิกัดตามมาตรฐานทีมที่ตกลงกันก่อน เพราะถ้า export ผิดพิกัด ผู้รับปลายทางอาจเปิด DWG แล้วตำแหน่งเพี้ยนทั้งชุดแบบ
+
 3. คลิก Tab **Export (set)** → เลือก Sheet ที่ต้องการ Export
 4. กด **Next** → เลือก Folder → กด **OK**
 

@@ -83,6 +83,10 @@ Number Sequence → Level.ByElevationAndName
 
 ปัญหา: Views ชื่อ `L1 - Structural` ต้องเปลี่ยนเป็น `F1` ทีละชั้นช้ามาก
 
+> [!WARNING]
+> **ให้ทดลองในไฟล์สำเนาหรือ Save As ก่อนรัน script นี้**
+> การ rename views เป็นการแก้ไขแบบหลายรายการพร้อมกัน ถ้าชื่อซ้ำ, filter ผิด, หรือ list ไม่ตรง คุณอาจได้ชื่อปนกันทั้งชุด view และย้อนกลับยากกว่าการแก้ทีละตัว
+
 ### Node Flow
 
 ```
