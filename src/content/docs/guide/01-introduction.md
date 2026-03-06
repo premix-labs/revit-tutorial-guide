@@ -54,16 +54,19 @@ sidebar:
 
 ### ขั้นตอนการเรียนรู้ (Learning Path)
 
-| บท  | หัวข้อ            | สิ่งที่จะได้เรียน                 |
-| --- | ----------------- | --------------------------------- |
-| 02  | Interface         | รู้จักหน้าจอ Revit ทุกส่วน        |
-| 03  | Starting Project  | ตั้ง Template, หน่วย, Grid, Level |
-| 04  | Modeling Concrete | ขึ้นเสา/คาน/พื้น + Copy 30 ชั้น   |
-| 05  | Reinforcement     | ใส่เหล็กเสริมตามผล ETABS          |
-| 06  | Shear Wall        | วาดผนังรับแรง + เหล็กเสริมผนัง    |
-| 07  | Structural Stairs | บันไดคอนกรีต 30 ชั้น + เหล็กบันได |
-| 08  | Documentation     | ติด Tag, ถอด BOQ, จัด Sheet       |
-| 09  | Interoperability  | ส่งข้อมูลไป-กลับ ETABS↔Revit      |
-| 10  | Troubleshooting   | แก้ปัญหาที่พบบ่อยพร้อมวิธีแก้     |
+| บท  | หัวข้อ            | สิ่งที่จะได้เรียน                             | ระดับ       |
+| --- | ----------------- | --------------------------------------------- | ----------- |
+| 02  | Interface         | รู้จักหน้าจอ Revit ทุกส่วน                    | 🟢 เริ่มต้น |
+| 03  | Starting Project  | ตั้ง Template, หน่วย, Grid, Level, Revit Link | 🟢 เริ่มต้น |
+| 04  | Modeling Concrete | ขึ้นเสา/คาน/พื้น/ทางลาด + Pile Foundation     | 🟢 เริ่มต้น |
+| 05  | Reinforcement     | ใส่เหล็กเสริมเสา/คาน/พื้น/ฐานราก              | 🟡 กลาง     |
+| 06  | Shear Wall        | วาดผนังรับแรง + เหล็กเสริมผนัง                | 🟡 กลาง     |
+| 07  | Structural Stairs | บันไดคอนกรีต 30 ชั้น + เหล็กบันได             | 🟡 กลาง     |
+| 08  | Documentation     | Tag, BOQ, Sheet, Export DWG, BBS              | 🟡 กลาง     |
+| 09  | Interoperability  | ส่งข้อมูลไป-กลับ ETABS↔Revit                  | 🟡 กลาง     |
+| 10  | Troubleshooting   | แก้ปัญหาที่พบบ่อยพร้อมวิธีแก้                 | 🟡 กลาง     |
+| 11  | Workset           | ทำงานทีม Worksharing + Sync                   | 🔴 ขั้นสูง  |
+| 12  | Family Editor     | สร้าง Family L-Shape Parametric               | 🔴 ขั้นสูง  |
+| 13  | Dynamo            | Automation สร้าง Level 30 ชั้นอัตโนมัติ       | 🔴 ขั้นสูง  |
 
 ในบทถัดไป เราจะมาดูหน้าตาโปรแกรม Revit กันก่อนครับ
