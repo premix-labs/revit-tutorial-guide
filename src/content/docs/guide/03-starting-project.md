@@ -173,4 +173,58 @@ sidebar:
 
 ---
 
+### D. เชื่อมโมเดล Architectural (Revit Link)
+
+> [!NOTE]
+> ในงานจริงทีมโครงสร้างและสถาปัตย์แยกกันทำโมเดล การ **Link** โมเดลสถาปัตย์เข้ามาช่วยให้ Coordinate ชิ้นส่วนได้โดยไม่ต้องรวม File เดียวกัน
+
+#### ขั้นที่ 1: Link โมเดล Architectural
+
+1. ไปที่เมนู **Insert > Link Revit**
+2. เลือกไฟล์ `.rvt` ของทีมสถาปัตย์ (เช่น `Condo30_Architectural.rvt`)
+3. ตั้งค่า **Positioning:**
+   - เลือก **`Auto - By Shared Coordinates`** (ถ้าทั้งสองไฟล์ตั้งค่า Origin ตรงกัน)
+   - หรือเลือก **`Auto - Origin to Origin`** (กรณีเริ่มต้น)
+4. กด **Open** → โมเดลสถาปัตย์จะปรากฏซ้อนทับโมเดลโครงสร้าง
+
+> [!WARNING]
+> **อย่าแก้ไข Linked Model โดยตรง!** ไฟล์ที่ Link เข้ามาเป็น Read-Only ใน Revit ของคุณ ต้องแก้ในไฟล์ต้นทางของสถาปนิกแล้ว Reload ครับ
+
+#### ขั้นที่ 2: จัดการ Link (Manage Links)
+
+1. ไปที่ **Insert > Manage Links > Revit**
+2. จะเห็นรายการ Link ที่เชื่อมอยู่ มีปุ่มสำคัญ:
+
+| ปุ่ม       | ใช้เมื่อไหร่                                        |
+| ---------- | --------------------------------------------------- |
+| **Reload** | สถาปนิกอัปเดตไฟล์ใหม่ → Reload เพื่อดึงข้อมูลล่าสุด |
+| **Unload** | ซ่อน Link ชั่วคราว (ไฟล์ยังอยู่ แต่ไม่แสดง)         |
+| **Remove** | ลบ Link ออกจากโปรเจกต์                              |
+
+#### ขั้นที่ 3: ควบคุมการแสดงผล Linked Model
+
+ปิด/เปิดการแสดงผลได้ตามต้องการ:
+
+1. กด **`VV`** (Visibility/Graphics)
+2. ไปที่ Tab **Revit Links**
+3. คลิกที่ชื่อ Link → ปุ่ม **By Host View** เพื่อกำหนดเอง หรือ
+4. ติ๊กเอาออกทั้งหมดถ้าต้องการซ่อน Linked Model ในมุมมองนั้นๆ
+
+> [!TIP]
+> **แนะนำ:** ซ่อน Linked Model ไว้ขณะทำงานโครงสร้าง แล้วเปิดดูเฉพาะตอน Coordinate/ตรวจสอบ Clash เพราะไฟล์ใหญ่จะทำให้ Revit ช้าลงได้
+
+#### ขั้นที่ 4: Copy/Monitor Level และ Grid
+
+เพื่อให้ Level และ Grid ของ Structural model ตรงกับ Architectural model:
+
+1. ไปที่ **Collaborate > Copy/Monitor > Select Link**
+2. คลิกที่ Linked Model ในมุมมอง
+3. เลือก **Levels** หรือ **Grids** → กด **Copy**
+4. คลิกเลือก Level/Grid ใน Linked Model ที่ต้องการ Copy → กด **Finish**
+
+> [!NOTE]
+> **Copy/Monitor** จะติดตามความเปลี่ยนแปลง — ถ้าสถาปนิกแก้ Level ใน Architectural model Revit จะแจ้งเตือน (Coordination Review) ให้คุณตัดสินใจว่าจะ Accept หรือ Reject การเปลี่ยนแปลงนั้น
+
+---
+
 ตอนนี้เรามีโครงร่าง **"คอนโด 30 ชั้น"** พร้อมแล้วครับ ในบทหน้าเราจะมาเริ่มวางเสาและคานกัน!

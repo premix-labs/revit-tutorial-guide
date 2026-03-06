@@ -42,6 +42,54 @@ sidebar:
 
 ---
 
+### 1.2 สร้างฐานรากเสาเข็ม (Pile Foundation)
+
+> [!NOTE]
+> **ทำไมตึกสูงต้องใช้เสาเข็ม?**
+> Isolated Foundation (ฐานแผ่) รับน้ำหนักได้จำกัด สำหรับอาคาร 30 ชั้น ต้องใช้ **Pile Foundation** เพื่อถ่ายแรงลงชั้นดินแข็งลึก
+
+**ข้อมูลเสาเข็มโครงการนี้:**
+
+| รายการ            | ค่า                      |
+| ----------------- | ------------------------ |
+| ประเภท            | เสาเข็มเจาะ (Bored Pile) |
+| เส้นผ่าศูนย์กลาง  | 600 mm                   |
+| ความยาว           | 21,000 mm                |
+| จำนวนต่อหัวเสา    | 4 ต้น                    |
+| ขนาด Pile Cap PC1 | 2,200 × 2,200 × 800 mm   |
+
+#### ขั้นที่ 1: Load Family เสาเข็ม
+
+1. ไปที่ **Insert > Load Family**
+2. เลือก `Structural > Foundations > Piles`
+3. เลือก **`M_Concrete-Round-Pile.rfa`** → กด **Open**
+
+#### ขั้นที่ 2: สร้าง Pile Cap Type
+
+Pile Cap คือ Block คอนกรีตหัวเสาเข็ม สร้างจาก Isolated Foundation แต่ใหญ่กว่า:
+
+1. คำสั่ง **Structure > Foundation > Isolated**
+2. เลือก `M_Footing-Rectangular` → **Edit Type > Duplicate**
+3. ตั้งชื่อ **`PC1 (2200x2200x800)`**
+4. ตั้งค่า: Width `2200`, Length `2200`, Thickness `800` → **OK**
+5. คลิก **At Grids** → เลือกทุกจุดตัด Grid → **Finish** ✅
+
+#### ขั้นที่ 3: วางเสาเข็มใต้ Pile Cap
+
+1. คำสั่ง **Structure > Foundation > Isolated**
+2. เปลี่ยน Family เป็น **`M_Concrete-Round-Pile`**
+3. **Edit Type > Duplicate** → ตั้งชื่อ **`Pile-600dia-21m`**
+4. ตั้งค่า: Pile Diameter `600`, Pile Length `21000` → **OK**
+5. วางเสาเข็ม **4 ต้น** รอบจุดศูนย์กลางเสาแต่ละต้น ห่าง ±700 mm ในแนว X และ Y
+
+> [!TIP]
+> **ระยะห่างเสาเข็มตาม มยผ.:** ระยะห่างหัวต่อหัว ≥ 3D = 3×600 = **1,800 mm** เป็นอย่างน้อย
+
+> [!IMPORTANT]
+> ตรวจสอบ **Base Offset** ของเสาเข็มใน Properties ต้องเป็นค่าลบ เช่น `-21000` เพื่อให้เสาเข็มจมลงใต้ดินครับ
+
+---
+
 ### 2. สร้างเสา (Structural Columns)
 
 **เสา C1 ขนาด 800×800 มม.**
