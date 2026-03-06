@@ -28,7 +28,7 @@ sidebar:
 
 **ขั้นตอนสร้างฐานราก F1:**
 
-1. ไปที่แปลน **1F** (Project Browser > Structural Plans > 1F)
+1. ไปที่แปลน **F1** (Project Browser > Structural Plans > F1)
 2. คำสั่ง **Structure > Foundation > Isolated**
 3. ใน Properties เลือก Family: `M_Footing-Rectangular` (ถ้าไม่มีให้ Load Family จาก `Structural > Foundations`)
 4. กด **Edit Type** -> **Duplicate** -> ตั้งชื่อ: `F1 (2000x2000x500)`

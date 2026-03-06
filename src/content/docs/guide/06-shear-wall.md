@@ -20,7 +20,7 @@ sidebar:
 
 ### ขั้นที่ 1: สร้าง Wall Type
 
-1.  ไปที่แปลน **1F**
+1.  ไปที่แปลน **F1**
 2.  คำสั่ง **Structure > Wall > Structural Wall** (หรือกดคีย์ `WA`)
 3.  ใน **Properties** คลิกชื่อ Type ปัจจุบัน
 4.  เลือก Family: `Basic Wall`
@@ -61,7 +61,7 @@ sidebar:
 1.  เลือกผนังทั้งหมดที่วาด (ลากเมาส์ครอบ -> Filter เลือกเฉพาะ Walls)
 2.  `Ctrl+C` (Copy to Clipboard)
 3.  **Modify > Paste > Aligned to Selected Levels**
-4.  เลือก **2F** ถึง **30F** (Shift+Click)
+4.  เลือก **F2** ถึง **F30** (Shift+Click)
 5.  กด OK -> ผนังครบทุกชั้น!
 
 ---
@@ -135,4 +135,3 @@ sidebar:
 
 > [!TIP]
 > ใช้ **Propagate Rebar** เพื่อ Copy เหล็กไปผนังชิ้นอื่นที่มี Type เดียวกันได้ทันที (คลิกขวาที่ Rebar Set -> Propagate)
-
