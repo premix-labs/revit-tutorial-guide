@@ -147,3 +147,84 @@ sidebar:
 
 > [!TIP]
 > **Revision Cloud:** ถ้าแก้แบบแล้วต้องส่งใหม่ ให้ใช้ **Annotate > Revision Cloud** วาดรอบพื้นที่ที่แก้ไข พร้อมใส่เลข Revision ที่ Title Block จะได้ติดตาม Version ของแบบได้ครับ
+
+---
+
+## 4. Export DWG (ส่งแบบให้ Contractor)
+
+ผู้รับเหมาหลายรายต้องการไฟล์ `.dwg` ไม่ใช่ PDF ให้ Export ดังนี้:
+
+### Export Sheet เป็น DWG
+
+1. ไปที่ **File > Export > CAD Formats > DWG**
+2. หน้าต่าง **DWG Export** จะเปิดขึ้น
+
+**ตั้งค่าสำคัญ:**
+
+| ตัวเลือก           | ค่าที่แนะนำ                   | เหตุผล                         |
+| ------------------ | ----------------------------- | ------------------------------ |
+| **Export**         | `<In session view/sheet set>` | เลือก Sheet ที่ต้องการ         |
+| **DWG Version**    | `AutoCAD 2018` หรือ `2013`    | ใช้งานได้กับ AutoCAD ทุกรุ่น   |
+| **Layer Settings** | `Export layer properties`     | เก็บชั้นสีและเส้นไว้ครบ        |
+| **Coordinate**     | `Shared`                      | ถ้าตั้ง Shared Coordinates ไว้ |
+
+3. คลิก Tab **Export (set)** → เลือก Sheet ที่ต้องการ Export
+4. กด **Next** → เลือก Folder → กด **OK**
+
+> [!WARNING]
+> DWG ที่ Export จาก Revit **อ่านได้ในโปรแกรมอื่น แต่แก้ไข Parametric ไม่ได้** เส้นทุกเส้นจะกลายเป็น Lines/Blocks ธรรมดาครับ
+
+---
+
+## 5. Bar Bending Schedule (BBS)
+
+BBS คือตารางสรุปเหล็กเสริมสำหรับหน้างาน แสดงขนาด รูปร่าง และความยาวตัดจริง
+
+### A. สร้าง BBS Schedule ใน Revit
+
+1. **View > Schedules > Schedule/Quantities**
+2. เลือก Category: **Structural Rebar** → OK
+3. เลือก Fields ตามลำดับ:
+
+| ลำดับ | Field            | ความหมาย                |
+| ----- | ---------------- | ----------------------- |
+| 1     | Partition        | หมวด (Column/Beam/Slab) |
+| 2     | Bar Diameter     | ขนาดเหล็ก               |
+| 3     | Rebar Shape      | รูปร่าง (M_00, M_T1...) |
+| 4     | Quantity         | จำนวนเส้น               |
+| 5     | Total Bar Length | ความยาวรวม (mm)         |
+| 6     | Comments         | หมายเหตุ (Mark เหล็ก)   |
+
+4. Tab **Sorting:** Sort by `Partition` → รอง Sort by `Bar Diameter`
+5. ติ๊ก **Grand Totals** + **Calculate totals** สำหรับ Total Bar Length
+6. กด **OK**
+
+### B. คำนวณน้ำหนักเหล็กใน Excel
+
+นำค่า Total Bar Length จาก Revit ไปคูณกับน้ำหนักต่อเมตร:
+
+| ขนาด | น้ำหนัก (กก./ม.) | สูตร               |
+| ---- | ---------------- | ------------------ |
+| DB10 | 0.617            | สูตร: 0.00617 × d² |
+| DB12 | 0.888            |                    |
+| DB16 | 1.578            |                    |
+| DB20 | 2.466            |                    |
+| DB25 | 3.853            |                    |
+| DB28 | 4.834            |                    |
+| DB32 | 6.313            |                    |
+
+> [!TIP]
+> **สูตรน้ำหนักเหล็ก:** `W (กก./ม.) = 0.00617 × d²` (d = เส้นผ่าศูนย์กลาง mm)
+> ตัวอย่าง DB20: 0.00617 × 20² = **2.47 กก./ม.**
+
+### C. Format BBS สำหรับส่งหน้างาน
+
+รูปแบบ BBS มาตรฐาน (ส่ง Contractor):
+
+| Mark  | ขนาด | รูปร่าง | จำนวน | ความยาว (mm) | น้ำหนัก (กก.) |
+| ----- | ---- | ------- | ----- | ------------ | ------------- |
+| S1-B1 | DB16 | M_00    | 50    | 5,800        | 72.9          |
+| S1-B2 | DB16 | M_00    | 50    | 5,800        | 72.9          |
+| C1-S1 | DB10 | M_T1    | 120   | 3,200        | 23.9          |
+
+> Export Schedule จาก Revit เป็น `.xlsx` ได้ที่ **File > Export > Reports > Schedule**

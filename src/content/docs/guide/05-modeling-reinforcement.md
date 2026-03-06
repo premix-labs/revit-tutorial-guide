@@ -247,6 +247,55 @@ Revit ไม่ได้โหลด Family เหล็กเสริมมา
 
 ---
 
+## ✍️ Tutorial: ใส่เหล็กฐานราก F1 (Isolated Foundation 2000×2000×500)
+
+![สเปคเหล็กฐานราก F1](/images/rebar/foundation_rebar.png)
+
+**สเปคเหล็กฐานราก F1:**
+
+| ตำแหน่ง      | เบอร์ + ระยะ  | ทิศทาง         |
+| ------------ | ------------- | -------------- |
+| Bottom แนว X | DB16 @ 200 mm | ชั้นล่าง แนว X |
+| Bottom แนว Y | DB16 @ 200 mm | ชั้นล่าง แนว Y |
+| Top แนว X    | DB12 @ 200 mm | ชั้นบน แนว X   |
+| Top แนว Y    | DB12 @ 200 mm | ชั้นบน แนว Y   |
+
+> [!NOTE]
+> **Cover ฐานราก = 75 mm** (สัมผัสดิน) ต่างจาก Column/Beam ที่ใช้ 25-40 mm ตาม มยผ. ต้องแก้ค่า Rebar Cover ที่ Type Properties ของฐานรากก่อนใส่เหล็ก
+
+### ขั้นที่ 1: เตรียมมุมมอง
+
+1. ไปที่ **Project Browser > Structural Plans > F1**
+2. ซูม Zoom ไปที่ฐานรากต้นหนึ่ง
+3. ผ่า **Section** ตัดผ่านฐานราก (กด `SE`) ทั้งแนว X และ Y เพื่อเห็นหน้าตัด
+
+### ขั้นที่ 2: แก้ค่า Rebar Cover ของฐานราก
+
+1. คลิกเลือกฐานราก **F1**
+2. Properties → คลิก **Edit Type**
+3. ปรับ **Rebar Cover — Other Faces** เป็น `75` mm → OK
+
+### ขั้นที่ 3: ใส่เหล็ก Bottom
+
+1. คลิกเลือกฐานราก → กด **`Rebar`**
+2. ตั้งค่า:
+   - **Rebar Shape:** `M_00`
+   - **Bar Diameter:** `16` (DB16)
+   - **Placement Orientation:** `Parallel to Work Plane`
+   - **Layout:** `Maximum Spacing` / `200` mm
+3. ชี้เมาส์ที่ **ขอบล่าง** ของฐานราก → คลิกวาง (Bottom แนว X)
+4. ทำซ้ำด้วย `Perpendicular to Cover` สำหรับ Bottom แนว Y
+
+### ขั้นที่ 4: ใส่เหล็ก Top
+
+1. ทำซ้ำขั้นที่ 3 แต่ชี้เมาส์ที่ **ขอบบน** ของฐานราก
+2. Top แนว X (DB16@200) และ Top แนว Y (DB12@200)
+
+> [!TIP]
+> ฐานรากทุกต้นมีขนาดเท่ากัน → เลือกเหล็กทั้งหมดใน F1 → **Propagate Rebar** → เลือกฐานรากต้นอื่น → Finish ✅
+
+---
+
 ## ✨ Tutorial: ใส่เหล็กพื้น S1 (Bottom DB16@200 + Top DB12@200)
 
 ![สเปคเหล็กพื้น S1 : Bottom DB16@200 + Top DB12@200 + Column Strip DB16@100](/images/rebar/slab_rebar.png)
