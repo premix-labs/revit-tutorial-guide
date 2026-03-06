@@ -2,7 +2,7 @@
 title: ทำแบบและถอดปริมาณ (Documentation)
 description: การสร้าง Sheet, Tagging และ Schedule (BOQ) แบบละเอียด
 sidebar:
-  order: 7
+  order: 8
 ---
 
 ## 1. การติดป้ายชื่อ (Tagging)

@@ -2,7 +2,7 @@
 title: การส่งต่อข้อมูล (Interoperability)
 description: การทำงานร่วมกันระหว่าง Revit และ ETABS แบบ Step-by-Step
 sidebar:
-  order: 8
+  order: 9
 ---
 
 ## ทำไมต้องส่งข้อมูลไป-กลับ?

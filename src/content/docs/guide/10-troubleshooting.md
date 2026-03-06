@@ -2,7 +2,7 @@
 title: แก้ปัญหาที่พบบ่อย (Troubleshooting)
 description: รวมปัญหาที่พบบ่อยใน Revit Structure พร้อมวิธีแก้
 sidebar:
-  order: 9
+  order: 10
 ---
 
 ## ปัญหาตอน Modeling

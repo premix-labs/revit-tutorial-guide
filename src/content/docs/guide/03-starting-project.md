@@ -134,6 +134,43 @@ sidebar:
     - เลือกเส้น 1 -> กด `CO` (Copy) -> ดึงขึ้นไปข้างบนทีละ **`6000`** จนถึงเส้น 4
 
 > [!NOTE]
-> ชื่อ Grid ต้องตรงกับ ETABS เป๊ะๆ (A-F, 1-4) เพราะถ้าทำ Interoperability ในบทที่ 8 ชื่อที่ไม่ตรงกันจะทำให้โปรแกรมจับคู่ไม่ได้ครับ
+> ชื่อ Grid ต้องตรงกับ ETABS เป๊ะๆ (A-F, 1-4) เพราะถ้าทำ Interoperability ในบทที่ 9 ชื่อที่ไม่ตรงกันจะทำให้โปรแกรมจับคู่ไม่ได้ครับ
+
+### C. ตั้งค่า View Range และเผยแพร่ทุกชั้นด้วย View Template
+
+ปัญหาลำดับแรกของผู้ใช้ Revit สร้างชิ้นส่วนแล้วมองไม่เห็นในแปลน สาเหตุใหญ่คือ **View Range** ครอบไม่ถึง! เราจะตั้งค่าครั้งเดียว แล้วแปลแบบเดียวกันนั้นไปให้ครบทุกชั้นด้วย View Template
+
+**ขั้นที่ 1: ตั้ง View Range ที่แปลน F1 ก่อน**
+
+1. เปิดแปลน **F1** คลิกที่ว่างๆ ไม่ต้องเลือกอะไร
+2. Properties (Panel ซ้าย) > หมวด Extents > **View Range** > กด **Edit...**
+3. ตั้งค่าดังนี้:
+   - **Top:** `Associated Level` / Offset: `3000` (สูงถึงชั้นถัดไป)
+   - **Cut Plane:** `Associated Level` / Offset: `1200` (ระดับเอว ตัดเสาให้เส้นหนา)
+   - **Bottom:** `Associated Level` / Offset: `0`
+   - **View Depth:** `Associated Level` / Offset: `-3000` (มองเห็นฐานรากใต้ดิน)
+4. กด **Apply** ก่อน แล้วค่อยกด **OK**
+
+> [!WARNING]
+> **Error: "Top clip plane is set below the cut plane"** — ถ้าเจอ Error นี้ แปลว่าค่า Top ต่ำกว่า Cut Plane ครับ! กฎเหล็กคือ **Top (3000) ต้องมากกว่า Cut Plane (1200) เสมอ** ให้กด Close แล้วแก้ค่าใหม่ให้ถูกต้องก่อนกด Apply
+
+**ขั้นที่ 2: บันทึกเป็น View Template**
+
+1. ยังอยู่ที่แปลน F1 ไปเมนู **View > View Templates > Create Template from Current View...**
+2. ตั้งชื่อ Template ว่า **`Structural Plan - Standard`** แล้วกด OK
+
+**ขั้นที่ 3: แปล Template ไปทุกชั้นด้วย Project Browser (วิธีที่เร็วที่สุด)**
+
+1. ไปที่ **Project Browser** ฝั่งขวา > ขยายหมวด **Structural > Structural Plans**
+2. คลิกที่แปลน **`F2`** ก่อน
+3. กด **Shift ค้าง** แล้วคลิกที่แปลนชั้นสูงสุด (เช่น `F30` หรือ `Roof`) เพื่อเลือกทุกชั้นพร้อมกัน
+4. **คลิกขวา** บน View ที่เลือกไว้ > เลือก **`Apply View Template...`**
+5. เลือก **`Structural Plan - Standard`** > กด **OK**
+6. เสร็จ! ทุกชั้นจะได้รับ View Range เดียวกันทันที!
+
+> [!TIP]
+> ถ้าในอนาคตต้องการปรับ View Range (เช่น เปิดให้เห็นเสาเข็ม) ให้แก้ที่ Template `Structural Plan - Standard` แล้ว Apply อีกครั้ง ทุกชั้นจะอัปเดตพร้อมกันครับ
+
+---
 
 ตอนนี้เรามีโครงร่าง **"คอนโด 30 ชั้น"** พร้อมแล้วครับ ในบทหน้าเราจะมาเริ่มวางเสาและคานกัน!
