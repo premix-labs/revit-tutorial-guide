@@ -332,3 +332,72 @@ Revit ไม่ได้โหลด Family เหล็กเสริมมา
 3. กด **`Ctrl+C`** → ไปที่ **Modify > Clipboard > Paste > Aligned to Selected Levels**
 4. เลือกชั้น **F2 ถึง F30** → กด OK
 5. เหล็กพื้นจะถูก Copy กระจายไปทุกชั้นทันที!
+
+---
+
+## ✨ Tutorial: ใส่เหล็กพื้นแบบเร็ว (Area Reinforcement)
+
+> [!TIP]
+> **เมื่อไหรควรใช้ Area Reinforcement?**
+> เหมาะสำหรับพื้นใหญ่ที่เหล็กสม่ำเสมอทั้งแผ่น ใส่ได้ใน **Plan View** โดยตรง เร็วกว่า Manual มาก
+
+### เตรียมมุมมอง
+
+1. เปิดแปลน **F1** (Structural Plans)
+2. ตั้ง **Detail Level** = **`Fine`**
+
+### ขั้นที่ 1: วาดขอบเขต Area Reinforcement
+
+1. คลิกเลือก **แผ่นพื้น S20** ในแปลน
+2. ใน Contextual Tab **Modify | Structural Foundations** (หรือ Floors) คลิก **`Area Reinforcement`**
+   - _ถ้าไม่เห็นปุ่ม ให้ไปที่ **Structure > Rebar > Area Reinforcement**_
+3. โปรแกรมเข้าโหมด **Sketch** (เส้นสีม่วง) — วาดเส้นขอบเขตครอบพื้นทั้งแผ่น:
+   - ใช้ **Pick Lines** คลิกที่ขอบพื้นทั้ง 4 ด้านเพื่อให้เส้นปิดสนิทอัตโนมัติ
+4. กด ✅ **Finish Edit Mode**
+
+### ขั้นที่ 2: ตั้งค่า Properties
+
+หลังกด Finish จะได้กลุ่มเหล็กปรากฏในแปลน — คลิกเลือก Area Reinforcement แล้วดู Properties:
+
+| Property                                    | ค่าที่ตั้ง | ความหมาย          |
+| ------------------------------------------- | ---------- | ----------------- |
+| **Top Layer — Major Direction Bar Type**    | `DB12`     | Top แนว X         |
+| **Top Layer — Minor Direction Bar Type**    | `DB12`     | Top แนว Y         |
+| **Top Layer — Major Spacing**               | `200` mm   | ระยะห่าง Top X    |
+| **Top Layer — Minor Spacing**               | `200` mm   | ระยะห่าง Top Y    |
+| **Bottom Layer — Major Direction Bar Type** | `DB16`     | Bottom แนว X      |
+| **Bottom Layer — Minor Direction Bar Type** | `DB16`     | Bottom แนว Y      |
+| **Bottom Layer — Major Spacing**            | `200` mm   | ระยะห่าง Bottom X |
+| **Bottom Layer — Minor Spacing**            | `200` mm   | ระยะห่าง Bottom Y |
+
+> [!NOTE]
+> **Major Direction** = แนวหลัก (ตามทิศการวางเส้น Sketch แรก)
+> **Minor Direction** = แนวรอง (ตั้งฉากกับ Major 90°)
+> สังเกตลูกศรสีฟ้าในแปลนว่าชี้ทิศทางไหน ถ้าต้องการหมุนให้คลิกที่ Property **Rotation** หรือกด **Rotate** (`RO`)
+
+### ขั้นที่ 3: เหล็กเสริมหัวเสา (Extra Top — ยังต้องทำ Manual)
+
+> [!IMPORTANT]
+> Area Reinforcement จะใส่เหล็กสม่ำเสมอทั้งแผ่น **แต่ไม่ทำ Extra Top หัวเสาให้** ต้องใช้ Manual Rebar วาง Extra Top DB16@100 รอบหัวเสาเพิ่มด้วยตนเองตามขั้นที่ 3 ในหัวข้อก่อนหน้าครับ
+
+### ขั้นที่ 4: Copy ไปทุกชั้น
+
+1. คลิกเลือก **Area Reinforcement** ที่วางไว้ (คลิกที่เส้นขอบหรือลูกศร)
+2. กด **`Ctrl+C`**
+3. **Modify > Paste > Aligned to Selected Levels**
+4. เลือก **F2 ถึง F30** → กด OK ✅
+
+> [!TIP]
+> Area Reinforcement เป็น Parametric — ถ้าแก้ค่า Spacing หรือ Bar Type ที่ชั้น F1 แล้ว Copy ใหม่ ทุกชั้นจะอัปเดตตาม ไม่ต้องแก้ทีละชั้น!
+
+---
+
+### สรุปเปรียบเทียบ: เลือกวิธีไหนดี?
+
+| หัวข้อ               | Manual Rebar               | Area Reinforcement      |
+| -------------------- | -------------------------- | ----------------------- |
+| **ความเร็ว**         | ช้า (วางทีละเส้น)          | ⚡ เร็วมาก (คลิกเดียว)  |
+| **Control**          | สูง (ควบคุมทุกเส้น)        | ปานกลาง                 |
+| **Extra Top หัวเสา** | ✅ ทำได้เลย                | ❌ ต้องทำ Manual เพิ่ม  |
+| **Around Opening**   | ✅ จัดการเองได้            | ⚠️ ต้องตัดขอบเขตรอบช่อง |
+| **เหมาะกับ**         | รูปตัดซับซ้อน, Edge Detail | พื้นใหญ่ สม่ำเสมอ       |
