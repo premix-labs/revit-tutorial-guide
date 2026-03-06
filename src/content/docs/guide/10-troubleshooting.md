@@ -1,9 +1,12 @@
 ---
-title: แก้ปัญหาที่พบบ่อย (Troubleshooting)
-description: รวมปัญหาที่พบบ่อยใน Revit Structure พร้อมวิธีแก้
+title: "ภาคผนวก: แก้ปัญหาที่พบบ่อย (Troubleshooting)"
+description: คู่มืออ้างอิงสำหรับปัญหาที่พบบ่อยใน Revit Structure และวิธีแก้
 sidebar:
-  order: 10
+  order: 17
 ---
+
+> [!NOTE]
+> บทนี้ตั้งใจให้เป็น **reference appendix** มากกว่าบทเรียนแบบลำดับ ถ้ากำลังอ่านตามทีละบทให้ใช้บทนี้ตอนติดปัญหา หรือย้อนกลับมาค้นหาวิธีแก้เมื่อจำเป็น
 
 ## ปัญหาตอน Modeling
 
@@ -88,9 +91,9 @@ sidebar:
 
 **วิธีแก้:**
 
-1.  ค่า Volume/Weight ต้อง **Run อย่างน้อย 1 ครั้ง** ใน Revit:
-    - ไปที่ **Analyze > Structural Analysis** -> กด Run (แม้จะไม่ได้ใช้ผล)
-2.  หรือเช็คว่า Field ที่เลือกเป็น **Calculated Value** (ต้องติ๊ก Calculate totals)
+1.  ตรวจว่าฟิลด์ที่ใช้ใน Schedule รองรับการคำนวณจริงสำหรับ Category นั้น เช่น `Volume`, `Count`, `Total Bar Length`
+2.  ไปที่ Tab **Formatting** แล้วติ๊ก **Calculate totals** ให้กับฟิลด์ที่ต้องรวม
+3.  ถ้าเป็นเหล็กเสริมและต้องการน้ำหนักรวม ให้สร้าง **Calculated Value** จากความยาวรวมคูณน้ำหนักต่อเมตร หรือคำนวณต่อใน Excel เพราะ Revit ไม่ได้มี `Total Weight` ให้ทุกกรณี
 
 ### ❌ Tag แสดงเป็น "?"
 

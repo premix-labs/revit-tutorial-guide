@@ -2,8 +2,12 @@
 title: การส่งต่อข้อมูล (Interoperability)
 description: การทำงานร่วมกันระหว่าง Revit และ ETABS แบบ Step-by-Step
 sidebar:
-  order: 9
+  order: 10
 ---
+
+> [!IMPORTANT]
+> **ระดับบทนี้: Advanced / Environment-dependent**
+> ถ้าเมนู plugin, เวอร์ชัน ETABS, หรือไฟล์กลางของทีมไม่ตรงกับที่คุณมีอยู่จริง ให้ข้ามบทนี้ได้ทันที ไม่ควรเดาเมนูต่อเอง
 
 ## ทำไมต้องส่งข้อมูลไป-กลับ?
 
@@ -12,20 +16,43 @@ sidebar:
 | **Revit → ETABS** | ขึ้นโมเดลใน Revit ก่อน                 | ไม่ต้องสร้างโมเดลซ้ำ 2 รอบ    |
 | **ETABS → Revit** | ออกแบบใน ETABS ก่อน (แบบ Workshop นี้) | ส่งผลหน้าตัด/เหล็กกลับมาทำแบบ |
 
+> [!TIP]
+> **เลือกทางไหนก่อนดี**
+> ใช้ decision map นี้ก่อนเริ่ม:
+> - มี `CSiXRevit` และเวอร์ชันตรงกัน: ใช้วิธีที่ 1
+> - ไม่มี plugin แต่ต้องส่ง geometry ไปต่อ: ใช้วิธีที่ 2 ผ่าน IFC
+> - ไม่มีทั้ง plugin และ IFC workflow ที่พร้อม: ให้ส่งเฉพาะข้อมูลอ้างอิงหลัก เช่น level, grid, section size, แล้ว rebuild โมเดลสำคัญด้วยมือในไฟล์ปลายทาง
+>
+> สำหรับผู้เริ่มต้น ไม่จำเป็นต้องฝืนใช้ plugin ถ้ายังไม่แน่ใจเรื่องเวอร์ชัน เพราะปัญหาส่วนใหญ่เกิดจาก environment ไม่ตรงกันมากกว่าตัวโมเดล
+
 ---
 
-## วิธีที่ 1: ใช้ CSiXRevit Plugin (แนะนำ ⭐)
+## วิธีที่ 1: ใช้ CSiXRevit Plugin (ถ้ามีและเวอร์ชันรองรับ) ⭐
+
+> [!WARNING]
+> **ถ้ายังไม่ยืนยัน compatibility ของ Revit + ETABS + CSiXRevit อย่าฝืนทำตามแบบกดทีละเมนู**
+> สำหรับผู้เริ่มต้น ให้ถือว่าวิธีนี้ใช้ได้ก็ต่อเมื่อ:
+> - ติดตั้งปลั๊กอินจากแหล่งทางการแล้ว
+> - ปลั๊กอินมองเห็นใน Revit จริง
+> - มีคู่เวอร์ชันที่ทีมใช้งานและทดสอบมาแล้ว
+> 
+> ถ้าขาดข้อใดข้อหนึ่ง ให้ข้ามไป **วิธีที่ 2 (IFC)** หรือ **วิธีที่ 3 (Manual Fallback)** ทันที จะปลอดภัยกว่า
 
 ### เตรียมตัว
 
-1.  ดาวน์โหลด **CSiXRevit Plugin** จากเว็บไซต์ CSI (https://www.csiamerica.com) หรือค้นหา `CSiXRevit` ใน **Autodesk App Store** (apps.autodesk.com)
-2.  ติดตั้งให้ตรงกับเวอร์ชัน Revit ที่ใช้ (เช่น CSiXRevit for Revit 2026)
-3.  รีสตาร์ท Revit -> จะเห็น Tab **Add-Ins** มีเมนู CSi เพิ่มขึ้นมา
+1.  ดาวน์โหลด **CSiXRevit Plugin** จากเว็บไซต์ CSI หรือแหล่งทางการของผู้พัฒนา
+2.  ติดตั้งให้ตรงกับเวอร์ชัน Revit/ETABS ที่ใช้
+3.  รีสตาร์ท Revit แล้วตรวจสอบที่ Tab **Add-Ins** หรือเมนูของปลั๊กอิน
+
+> [!NOTE]
+> **ชื่อคำสั่งและตำแหน่งเมนูอาจต่างกันตามเวอร์ชันของปลั๊กอิน** บทนี้จึงควรอ่านเป็น workflow reference มากกว่า click-by-click tutorial แบบตายตัว ให้ยึดหลักว่าเราต้องการ 2 งานหลักคือ `Export model from Revit to ETABS` และ `Update/Synchronize Revit model from ETABS`
 
 ### A. Export จาก Revit ไป ETABS
 
 1.  เปิดโมเดล Revit ที่ต้องการส่งออก
-2.  ไปที่ **Add-Ins > External Tools > Export to Create New ETABS Model**
+2.  ใช้คำสั่งฝั่งปลั๊กอินที่ทำหน้าที่ **ส่งโมเดลจาก Revit ไป ETABS**
+    - _ในบางเวอร์ชันอาจใช้ชื่อใกล้เคียงกับ `Export`, `Create ETABS Model` หรือ `Export to ETABS`_
+    - _ชื่อ **`Export/Create ETABS Model`** ในบทนี้ให้ถือเป็น **ตัวอย่างคำสั่งจากเวอร์ชันที่เคยใช้ทดสอบ** ไม่ใช่ชื่อที่รับประกันว่าจะตรงทุกเครื่อง_
 3.  เลือก Elements ที่จะส่ง:
     - ✅ Grids (เส้น Grid)
     - ✅ Levels (ระดับชั้น)
@@ -41,7 +68,9 @@ sidebar:
 ### B. Import ผลออกแบบจาก ETABS กลับ Revit
 
 1.  ใน ETABS ออกแบบเสร็จแล้ว
-2.  ไปที่ **Add-Ins > External Tools > Update Revit Model from ETABS**
+2.  ใช้คำสั่งฝั่งปลั๊กอินที่ทำหน้าที่ **ดึงผลหรือ synchronize จาก ETABS กลับเข้า Revit**
+    - _ในบางเวอร์ชันอาจใช้ชื่อใกล้เคียงกับ `Update`, `Synchronize`, `Update Revit Model` หรือ `Import from ETABS`_
+    - _ชื่อ **`Update/Synchronize Revit Model from ETABS`** ในบทนี้ให้ถือเป็น **ตัวอย่างจาก environment ที่เคยใช้** เท่านั้น_
 3.  เลือกไฟล์ ETABS (`.edb`)
 4.  เลือกข้อมูลที่จะนำกลับ:
     - ✅ Section Sizes (ขนาดหน้าตัด)
@@ -64,6 +93,22 @@ sidebar:
 > [!NOTE]
 > IFC รองรับข้อมูลได้มากกว่า Geometry แต่ในการนำเข้า ETABS โดยทั่วไปมักได้ผลใช้งานหลักเป็น **Geometry** จึงควรเตรียมปรับ Supports, Releases, และ Load เพิ่มใน ETABS ครับ
 
+## วิธีที่ 3: Manual Fallback (กรณี plugin และ IFC ไม่พร้อม)
+
+ถ้าสภาพแวดล้อมไม่พร้อมจริง ให้ใช้วิธี manual แบบควบคุมได้:
+
+1. ล็อกชื่อ `Levels` และ `Grids` ให้ตรงกันทั้ง 2 โปรแกรม
+2. ใช้ ETABS เป็นแหล่งอ้างอิงสำหรับ section size และตำแหน่งองค์ประกอบหลัก
+3. ขึ้นเฉพาะโครงสร้างสำคัญใน Revit:
+   - เสา
+   - คาน
+   - พื้น
+   - shear wall
+4. ตรวจ analytical continuity ในแต่ละโปรแกรมแยกกันอีกครั้ง
+
+> [!NOTE]
+> วิธี manual ช้ากว่า แต่คาดเดาง่ายกว่าและเหมาะกับการฝึก หรือกรณีปลั๊กอินมีปัญหาเวอร์ชัน
+
 ---
 
 ## ⚠️ ข้อควรระวัง (Best Practices)
@@ -81,8 +126,8 @@ sidebar:
 
 | Revit   | ETABS | สถานะ                    |
 | ------- | ----- | ------------------------ |
-| 1F      | 1F    | ✅ ตรงกัน                |
-| Level 1 | 1F    | ❌ ไม่ตรง! จะ Map ไม่ได้ |
+| F1      | F1    | ✅ ตรงกัน                |
+| Level 1 | F1    | ❌ ไม่ตรง! จะ Map ไม่ได้ |
 
 **วิธีแก้:** ตั้งชื่อใน Revit ให้ตรงกับ ETABS ตั้งแต่แรก (ซึ่งเราทำไว้แล้วในบทที่ 3 ✅)
 

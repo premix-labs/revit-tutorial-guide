@@ -5,6 +5,11 @@ sidebar:
   order: 11
 ---
 
+> [!NOTE]
+> บทนี้เหมาะกับงานทีมหรือคนที่กำลังเตรียมไปทำงานร่วมกันจริง ถ้าคุณฝึกคนเดียว สามารถข้ามไปบท Family และ Dynamo ได้ก่อน แต่ถ้าจะไปต่อบท Advanced Rebar หรือ Coordination ควรผ่านบท Standards, Documentation และ Interoperability มาก่อน แล้วค่อยย้อนกลับมาอ่านบทนี้ตอนจะทำงานหลายคนในไฟล์เดียว
+>
+> **สำหรับไฟล์ฝึกคนเดียว:** ไม่ควรเปิด `Worksharing` เพียงเพื่อทำตามหนังสือ เพราะจะเพิ่มความซับซ้อนโดยไม่จำเป็น
+
 ## Worksharing คืออะไร?
 
 ในโปรเจกต์จริง วิศวกรโครงสร้าง สถาปนิก และ MEP ต้องทำงานในไฟล์ Revit **พร้อมกัน** โดยไม่เขียนทับงานกัน Revit แก้ปัญหานี้ด้วย **Worksharing (Workset)**:
@@ -43,23 +48,41 @@ sidebar:
 
 กด **OK** หลังสร้างครบ
 
-### ขั้นที่ 3: Save as Central Model
+### ขั้นที่ 3: Save as Central Model (กรณี File-Based Worksharing)
 
 1. **File > Save As > Project**
-2. บันทึกไปที่ **Network Drive หรือ BIM 360**
+2. บันทึกไปที่ **Network Drive** หรือระบบไฟล์ส่วนกลางที่ทีมทุกคนเข้าถึงได้
 3. ตั้งชื่อไฟล์: `Condo30_Central.rvt`
 4. ในหน้าต่าง Save Options ติ๊ก **Make this a Central Model** → กด **OK**
 
 > [!WARNING]
-> Central Model ต้องอยู่ใน **Server ที่ทุกคนเข้าถึงได้** เช่น Network Drive, BIM 360, หรือ Revit Server ไม่ควรเก็บในเครื่องคนเดียวครับ
+> ขั้นตอน `Make this a Central Model` ใช้กับ **file-based central model** เท่านั้น ถ้าโปรเจกต์อยู่บน **Autodesk Construction Cloud (ACC)** จะใช้ workflow ของ Cloud Worksharing แยกต่างหาก ไม่ได้ Save As แบบนี้
 
-### ขั้นที่ 4: สร้าง Local Model
+> [!CAUTION]
+> **ที่เก็บ Central Model ต้องเป็น file share ที่รองรับจริง**
+> อย่าเก็บ file-based central model ไว้บน:
+> - โฟลเดอร์ sync cloud ทั่วไป
+> - Autodesk Docs Connected Drive
+> - โฟลเดอร์ที่มีระบบ sync/background copy แทรกกลาง
+>
+> ถ้าทีมจะทำงานบน cloud ให้ใช้ **ACC Cloud Worksharing** แทน ไม่ควรเอา central model แบบ file-based ไปวางบนระบบที่ไม่ได้ออกแบบมาสำหรับ Revit worksharing
+
+### ขั้นที่ 4: สร้าง Local Model (กรณี File-Based Worksharing)
 
 แต่ละคนในทีมทำดังนี้:
 
-1. เปิดไฟล์ Central (`Condo30_Central.rvt`)
-2. **File > Save As > Project** → บันทึกในเครื่องตัวเองเป็น `Condo30_Local_[ชื่อ].rvt`
-3. ทำงานใน Local Model ทุกครั้ง ไม่ทำงานใน Central โดยตรง!
+1. ไปที่ **File > Open** แล้วเลือกไฟล์ Central (`Condo30_Central.rvt`)
+2. ติ๊กตัวเลือก **Create New Local** ก่อนเปิดไฟล์
+3. เปิดไฟล์แล้ว Revit จะสร้าง Local Model ให้โดยอัตโนมัติ จากนั้นให้ทำงานใน Local ทุกครั้ง ไม่ทำงานใน Central โดยตรง!
+
+### ขั้นที่ 5: กรณีใช้ Autodesk Construction Cloud (ACC)
+
+ถ้าทีมทำงานบน ACC/Autodesk Docs ให้แยกความเข้าใจออกจาก file-based workflow:
+
+1. Publish/Upload โมเดลขึ้น Project บน ACC ก่อน
+2. เปิดโมเดลจาก ACC ผ่านหน้า Home หรือ Autodesk Docs
+3. ถ้าเปิดเป็น **Cloud Workshared Model** อยู่แล้ว Revit จะใช้ไฟล์แคชในเครื่องให้อัตโนมัติ
+4. โดยทั่วไป **ไม่ใช้** ขั้นตอน `Make this a Central Model` และ **ไม่ใช้** ช่อง `Create New Local` แบบเดียวกับไฟล์บน Network Drive
 
 ---
 
@@ -105,4 +128,4 @@ sidebar:
 ---
 
 > [!NOTE]
-> **ทางเลือก Cloud:** Autodesk **BIM 360** (Autodesk Construction Cloud) รองรับ Worksharing ผ่าน Cloud โดยไม่ต้องมี Server กลางในออฟฟิส เหมาะสำหรับทีมที่ต้องทำงาน Remote ครับ
+> **ทางเลือก Cloud:** Autodesk **Construction Cloud (ACC)** รองรับ Cloud Worksharing โดยไม่ต้องมี Server กลางในออฟฟิส เหมาะสำหรับทีมที่ต้องทำงาน Remote แต่ขั้นตอนเปิดไฟล์และ cache local จะต่างจาก file-based central model ครับ

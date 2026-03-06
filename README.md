@@ -1,53 +1,70 @@
-# Starlight Starter Kit: Basics
+# Revit Tutorial Guide
 
-[![Deploy to GitHub Pages](https://github.com/premix-labs/revit-tutorial-guide/actions/workflows/deploy.yml/badge.svg)](https://github.com/premix-labs/revit-tutorial-guide/actions/workflows/deploy.yml)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fpremix-labs.github.io%2Frevit-tutorial-guide%2F&up_message=live&down_message=down&label=website)](https://premix-labs.github.io/revit-tutorial-guide/)
-[![Last Commit](https://img.shields.io/github/last-commit/premix-labs/revit-tutorial-guide)](https://github.com/premix-labs/revit-tutorial-guide/commits/master)
+หนังสือส่วนตัวสำหรับฝึกใช้งาน Revit Structure โดยจัดทำเป็นเว็บเอกสารด้วย Astro + Starlight
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+เป้าหมายของโปรเจกต์นี้คือ:
 
-```
-npm create astro@latest -- --template starlight
-```
+- ใช้เป็นคู่มือฝึกทำ Revit แบบ step-by-step
+- ตรวจและปรับปรุงเนื้อหาให้ถูกต้องทั้งเชิงโปรแกรมและ workflow
+- ค่อยๆ ขยายจากพื้นฐานไปถึงระดับใช้งานจริง
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## โครงสร้างโปรเจกต์
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
+```text
 .
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+|-- public/
+|   `-- images/                 รูปประกอบที่อ้างจาก Markdown
+|-- src/
+|   |-- assets/                 asset ที่ใช้ในหน้าเว็บ
+|   `-- content/
+|       |-- docs/
+|       |   |-- 404.md          หน้า 404 ของเว็บ
+|       |   |-- index.mdx       หน้าแรกของเว็บ
+|       |   `-- guide/          บทหลักของหนังสือ
+|       `-- content.config.ts   content collection config
+|-- docs/
+|   |-- book-workflow.md        workflow ตรวจ/แก้หนังสือ
+|   `-- content-standards.md    มาตรฐานการเขียนเนื้อหา
+|-- AGENTS.md                   คู่มือให้ Codex ทำงานกับ repo นี้
+|-- astro.config.mjs            config ของ Astro/Starlight
+`-- package.json
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## คำสั่งหลัก
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+รันจาก root ของโปรเจกต์:
 
-Static assets, like favicons, can be placed in the `public/` directory.
+| Command | ใช้ทำอะไร |
+| --- | --- |
+| `npm install` | ติดตั้ง dependency |
+| `npm run dev` | เปิดเว็บ local สำหรับอ่าน/ตรวจ |
+| `npm run build` | build เว็บไปที่ `dist/` |
+| `npm run preview` | preview output หลัง build |
 
-## 🧞 Commands
+## หลักการแก้หนังสือ
 
-All commands are run from the root of the project, from a terminal:
+- ไฟล์บทเรียนหลักอยู่ใน `src/content/docs/guide/`
+- 1 ไฟล์ = 1 บท
+- เวลาปรับเนื้อหา ต้องระวัง 3 เรื่องพร้อมกัน:
+  - ความถูกต้องของคำสั่งใน Revit
+  - ความสอดคล้องระหว่างบท
+  - ความลื่นในการทำตามแบบผู้อ่านจริง
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Workflow ที่แนะนำ
 
-## 👀 Want to learn more?
+1. อ่านบทที่เกี่ยวข้องก่อน
+2. ตรวจว่าคำสั่ง เมนู ชื่อ level/grid/type และผลลัพธ์ในบทสอดคล้องกัน
+3. ถ้าแก้หลายบท ให้เช็กความต่อเนื่องของ workflow ทั้งเล่ม
+4. รัน `npm run build` ทุกครั้งหลังแก้
+5. ถ้าปรับโครงสร้างหนังสือหรือ sidebar ให้ตรวจ `astro.config.mjs` ด้วย
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+## ไฟล์ที่ควรอ่านก่อนแก้
+
+- [AGENTS.md](./AGENTS.md)
+- [docs/book-workflow.md](./docs/book-workflow.md)
+- [docs/content-standards.md](./docs/content-standards.md)
+
+## หมายเหตุ
+
+โปรเจกต์นี้เน้นเป็นหนังสือฝึกใช้งานส่วนตัว ไม่ใช่เอกสารอ้างอิงทางการของ Autodesk
+ดังนั้นค่าตัวอย่างในบางบทอาจเป็นค่าจาก workshop หรือโครงการสมมติ และควรถูกระบุให้ชัดว่าเป็น `ตัวอย่าง`, `สมมติฐานโครงการ`, หรือ `อ้างอิงจากโปรแกรม`

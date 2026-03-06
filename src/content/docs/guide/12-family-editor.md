@@ -24,6 +24,18 @@ sidebar:
 
 ## ✍️ Tutorial: สร้าง Structural Column — L-Shape (300×300×100)
 
+> [!IMPORTANT]
+> **Prerequisite ของบทนี้**
+> บทนี้เหมาะกับผู้อ่านที่เริ่มเข้าใจการวัดระยะและ reference planes แล้ว
+> อย่างน้อยควรรู้คำเหล่านี้ก่อน:
+> - dimension
+> - label
+> - align
+> - lock
+> - flex test
+>
+> ถ้ายังไม่คุ้นกับแนวคิดพวกนี้ ให้ทำตามบทนี้ช้าๆ ทีละขั้น และอย่าข้ามช่วงผูก parameter กับ reference planes
+
 ### ขั้นที่ 1: เปิด Family Editor
 
 1. ไปที่ **File > New > Family**
@@ -68,6 +80,19 @@ sidebar:
 
 3. กด **OK**
 
+### ขั้นที่ 4.1: ผูก Parameter เข้ากับ Reference Planes
+
+หลังสร้าง parameter แล้ว ต้องทำให้ skeleton ของ family ขยับตามค่าที่กรอก:
+
+1. ใช้คำสั่ง **Aligned Dimension** วัดระยะระหว่าง Reference Planes ที่เกี่ยวข้อง
+2. คลิกมิติที่ได้ แล้วกด **Label**
+3. ผูกมิติกับ parameter ให้ตรงคู่:
+   - ระยะรวมแนวนอน → `b`
+   - ระยะรวมแนวตั้ง → `d`
+   - ความหนา flange → `tf`
+   - ความหนา web → `tw`
+4. ตรวจว่าค่าใน Family Types เปลี่ยนแล้วตัวเลขมิติขยับตามจริง
+
 ### ขั้นที่ 5: วาดหน้าตัด L-Shape
 
 1. ไปที่ View **Floor Plan: Lower Ref. Level**
@@ -86,10 +111,20 @@ sidebar:
 4. กด ✅ **Finish Edit Mode**
 5. ตั้งค่า **Extrusion End** = `10000` (ความสูง Default)
 
+### ขั้นที่ 5.1: Align และ Lock Geometry
+
+เพื่อให้ extrusion ขยับตาม parameter จริง:
+
+1. ใช้คำสั่ง **Align** (`AL`)
+2. Align ขอบ extrusion ให้ตรงกับ Reference Planes ที่เป็นตัวกำหนดรูปทรง
+3. กดรูปแม่กุญแจ **Lock** ในตำแหน่งที่ต้องการผูก geometry กับ skeleton
+4. ทำให้ครบทั้งด้านนอกและด้านในของรูปตัว L ก่อนทดสอบ Flex
+
 ### ขั้นที่ 6: Flex Test
 
 1. **Create > Family Types** → เปลี่ยนค่า `b` เป็น `400` → กด Apply
-2. ดูว่า Extrusion ขยายตามไหม ถ้าขยาย = Parametric ทำงานแล้ว! ✅
+2. ลองเปลี่ยน `d`, `tf`, และ `tw` เพิ่มอีกอย่างน้อย 1 รอบ
+3. ดูว่า Reference Planes และ Extrusion ขยับตามโดยไม่แตกหรือบิดรูป ถ้าขยับครบ = Parametric ทำงานแล้ว! ✅
 
 ### ขั้นที่ 7: บันทึกและ Load เข้าโปรเจกต์
 
@@ -100,4 +135,4 @@ sidebar:
 ---
 
 > [!TIP]
-> **แหล่ง Family ฟรี:** [Autodesk Seek](https://seek.autodesk.com) และ [BIMObject](https://bimobject.com) มี Library ให้ Download ฟรีหลายพัน Family ลองหาดูก่อนสร้างเองครับ
+> **แหล่ง Family ฟรี:** [BIMObject](https://bimobject.com) และ Autodesk Content/Manufacturer Libraries เป็นจุดเริ่มต้นที่ใช้งานได้จริงกว่าครับ ลองหาก่อนสร้างเองจะประหยัดเวลามาก

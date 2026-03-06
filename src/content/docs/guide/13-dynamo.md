@@ -7,6 +7,17 @@ sidebar:
 
 ## Dynamo คืออะไร?
 
+> [!WARNING]
+> **บทนี้เป็น workflow เชิงแนวคิด + ตัวอย่าง script**
+> Dynamo มีความต่างตามเวอร์ชัน Revit, เวอร์ชัน Dynamo และ package ที่ติดตั้ง
+> เพราะฉะนั้นให้ยึด "ลำดับความคิดของ graph" เป็นหลัก ไม่ควรคาดหวังว่าชื่อ node, path เมนู หรือ parameter จะตรงทุกเครื่องแบบ 100%
+>
+> **Expected failure modes ที่พบบ่อย**
+> - package หรือ node ไม่ตรงเวอร์ชัน
+> - ชื่อ parameter ในโปรเจกต์ไม่ตรงตัวอย่าง
+> - ชื่อ view/level ซ้ำ
+> - graph รันได้แต่ได้ element ไม่ครบเพราะ input list ไม่ตรง
+
 **Dynamo** คือโปรแกรม Visual Programming ที่รวมอยู่ใน Revit ช่วยให้ทำงานซ้ำๆ ได้อัตโนมัติโดยไม่ต้องเขียน Code
 
 **เมื่อไหรควรใช้ Dynamo?**
@@ -30,6 +41,9 @@ sidebar:
 
 ## ✍️ Script 1: สร้าง Level 30 ชั้นอัตโนมัติ
 
+> [!WARNING]
+> **ใช้กับไฟล์ใหม่หรือไฟล์ที่ยังไม่มี Level ชุด F1-F30 เท่านั้น** ถ้าทำในโปรเจกต์ที่สร้าง Level ตามบทที่ 03 ไปแล้ว Script นี้จะชนชื่อเดิมและสร้างซ้ำไม่ได้
+
 ### ภาพรวม Node
 
 ```
@@ -47,13 +61,7 @@ Number Sequence → Level.ByElevationAndName
 0..87000..3000; // ความสูงสะสม: 0, 3000, 6000 ... 87000
 ```
 
-**Node 2: `String from Array`** (สร้างชื่อชั้น)
-
-```
-List.Count → Range → String ต่อด้วย "F"
-```
-
-หรือใช้ Code Block:
+**Node 2: `Code Block`** (สร้างชื่อชั้น)
 
 ```
 "F" + (1..30);
@@ -86,7 +94,12 @@ Views.All → Filter (Structural Plan) → View.SetName → "F" + Number
 1. **Node: `All Elements of Category`** → เลือก Category = `Views`
 2. **Node: `Element.GetParameterValueByName`** → Parameter = `"View Type"`
 3. **Node: `List.FilterByBoolMask`** → กรองเฉพาะ `"Structural Plan"`
-4. **Node: `Element.SetParameterValueByName`** → Parameter = `"View Name"` → ใส่ชื่อ `"F1", "F2"...`
+4. **Node: `Element.SetParameterByName`** → Parameter = `"View Name"` → ใส่ชื่อ `"F1", "F2"...`
+
+> [!NOTE]
+> ในบางโปรเจกต์ ชื่อ parameter หรือชนิดของ view อาจไม่ตรงตามตัวอย่างนี้พอดี ให้ทดลอง inspect ข้อมูลจาก view 1 ตัวก่อน แล้วค่อยขยายไปทั้งรายการ
+>
+> **ระวังชื่อซ้ำ:** ถ้าในโปรเจกต์มี view ชื่อ `F1`, `F2` อยู่แล้ว การ rename จะ fail ทันที ควรเช็กชื่อเดิมก่อน หรือทดลองตั้งชื่อชั่วคราวเช่น `TMP-F1`, `TMP-F2` ก่อนค่อยปรับรอบสุดท้าย
 
 ---
 
@@ -95,14 +108,18 @@ Views.All → Filter (Structural Plan) → View.SetName → "F" + Number
 Dynamo อ่านข้อมูลจาก Excel และสร้าง Revit Elements ได้:
 
 1. **Node: `File Path`** → เลือกไฟล์ `.xlsx`
-2. **Node: `Excel.ReadFromFile`** → อ่านชีต `Columns`
-3. **Node: `Structural Column ByPointAndLevel`** → วาง Column ตามพิกัดใน Excel
+2. ใช้ node อ่าน Excel ที่มีอยู่ใน environment ของคุณ เช่น built-in node หรือ node จาก package ที่ติดตั้งเพิ่ม
+3. แปลงข้อมูลใน Excel ให้เป็น **Point + Level + Family Type** ก่อน
+4. ใช้ node สำหรับวางเสาใน Revit ตาม package ที่เลือกใช้งานจริง
 
 > [!NOTE]
 > **ต้องติดตั้ง Package เพิ่ม:** ไปที่ **Packages > Search for Package** แล้วติดตั้ง:
 >
 > - `Rhythm` (Node เพิ่มเติมสำหรับ Revit)
 > - `Data-Shapes` (UI สำหรับรับ Input จากผู้ใช้)
+
+> [!IMPORTANT]
+> ชื่อ node ด้าน Excel และการสร้าง element อาจต่างกันตามเวอร์ชัน Dynamo และ package ที่ติดตั้ง จึงควรยึด workflow เป็นหลัก ไม่ควรยึดชื่อตัว node แบบตายตัวถ้ายังไม่ได้เช็ก environment ก่อน
 
 ---
 

@@ -62,11 +62,15 @@ sidebar:
 | 05  | Reinforcement     | ใส่เหล็กเสริมเสา/คาน/พื้น/ฐานราก              | 🟡 กลาง     |
 | 06  | Shear Wall        | วาดผนังรับแรง + เหล็กเสริมผนัง                | 🟡 กลาง     |
 | 07  | Structural Stairs | บันไดคอนกรีต 30 ชั้น + เหล็กบันได             | 🟡 กลาง     |
-| 08  | Documentation     | Tag, BOQ, Sheet, Export DWG, BBS              | 🟡 กลาง     |
+| 14  | Standards & QA/QC | ตั้งมาตรฐานไฟล์ ตรวจคุณภาพโมเดลก่อนทำแบบกับทีม | 🟡 กลาง     |
+| 08  | Documentation     | Tag, BOQ, Sheet, Export DWG                   | 🟡 กลาง     |
 | 09  | Interoperability  | ส่งข้อมูลไป-กลับ ETABS↔Revit                  | 🟡 กลาง     |
-| 10  | Troubleshooting   | แก้ปัญหาที่พบบ่อยพร้อมวิธีแก้                 | 🟡 กลาง     |
 | 11  | Workset           | ทำงานทีม Worksharing + Sync                   | 🔴 ขั้นสูง  |
 | 12  | Family Editor     | สร้าง Family L-Shape Parametric               | 🔴 ขั้นสูง  |
 | 13  | Dynamo            | Automation สร้าง Level 30 ชั้นอัตโนมัติ       | 🔴 ขั้นสูง  |
+| 15  | Advanced Rebar    | ทำ shop drawing, BBS, lap splice, coupler     | 🔴 ขั้นสูง  |
+| 16  | Advanced Family + Dynamo | ทำ family และ automation ระดับ production | 🔴 ขั้นสูง  |
+| 17  | Coordination & Delivery | ประสานงาน ออกชุดส่งมอบ และปิดงานจริง     | 🔴 ขั้นสูง  |
+| 10  | Troubleshooting   | ค้นวิธีแก้ปัญหาที่พบบ่อยเมื่อติดขัด           | 📘 อ้างอิง    |
 
-ในบทถัดไป เราจะมาดูหน้าตาโปรแกรม Revit กันก่อนครับ
+เมื่อเรียนครบถึงบท 17 คุณจะได้ workflow ที่ครอบคลุมตั้งแต่ **เริ่มต้นใช้งาน Revit Structure → ขึ้นโมเดล → ใส่เหล็ก → วางมาตรฐานและคุมคุณภาพ → ทำแบบ → automation → ประสานงาน → ส่งมอบงาน** ในเล่มเดียวครับ
