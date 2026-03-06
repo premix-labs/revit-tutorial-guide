@@ -401,3 +401,52 @@ Revit ไม่ได้โหลด Family เหล็กเสริมมา
 | **Extra Top หัวเสา** | ✅ ทำได้เลย                | ❌ ต้องทำ Manual เพิ่ม  |
 | **Around Opening**   | ✅ จัดการเองได้            | ⚠️ ต้องตัดขอบเขตรอบช่อง |
 | **เหมาะกับ**         | รูปตัดซับซ้อน, Edge Detail | พื้นใหญ่ สม่ำเสมอ       |
+
+---
+
+## 🙈 การซ่อนเหล็กพื้นใน Structural Plan
+
+เหล็กพื้นมีจำนวนมากจนบดบังชิ้นส่วนอื่น มีวิธีซ่อนได้ 3 แบบ:
+
+### วิธีที่ 1: HH (เร็วที่สุด — เฉพาะ View นี้)
+
+1. คลิกเลือก **Area Reinforcement** ของพื้น
+2. กด **`HH`** → เหล็กพื้นหายทันที
+3. กู้คืนด้วย **`HR`** เมื่อต้องการดู
+
+### วิธีที่ 2: VG Filter + Partition (ถาวร — ข้ามทุก View)
+
+วิธีนี้ทำครั้งเดียวแล้วซ่อนเหล็กพื้นได้ทุก View พร้อมกัน:
+
+**ขั้นที่ 1: ตั้ง Partition บน Area Reinforcement**
+
+1. คลิกเลือก **Area Reinforcement**
+2. Properties → หมวด Construction → ช่อง **`Partition`** → พิมพ์ **`Slab`** → Enter
+
+**ขั้นที่ 2: สร้าง Filter**
+
+1. กด **`VV`** → Tab **Filters** → คลิก **Edit/New...**
+2. คลิกไอคอน **New Filter** → ตั้งชื่อ **`Hide Slab Rebar`** → OK
+3. ฝั่ง **Categories** → เลื่อนหา **`Structural Rebar`** → ติ๊กถูก ✅
+4. ฝั่ง **Filter Rules** → คลิก **Add Rule** → เลือก **`Partition`** → **`equals`** → พิมพ์ **`Slab`**
+5. กด **OK**
+
+> [!WARNING]
+> ต้องมี Filter Rule **Partition = Slab** เสมอ! ถ้าไม่มีเงื่อนไข Filter จะซ่อนเหล็กทั้งหมด ไม่ใช่แค่เหล็กพื้น
+
+**ขั้นที่ 3: เปิดใช้ Filter ใน View**
+
+1. ยังอยู่ที่ Tab **Filters** ใน VV → คลิก **Add** → เลือก **`Hide Slab Rebar`**
+2. ช่อง **Visibility** → **เอาติ๊กออก** → **OK**
+
+**ขั้นที่ 4: บันทึกเป็น View Template ใช้ทุกชั้น**
+
+1. **View > View Templates > Create Template from Current View** → ตั้งชื่อ `Structural Plan - Standard`
+2. Project Browser → เลือกแปลน F2-F30 ทั้งหมด (Shift+คลิก)
+3. คลิกขวา → **Apply View Template** → เลือก `Structural Plan - Standard` → OK
+4. ทุกชั้นจะซ่อนเหล็กพื้นพร้อมกันทันที! ✅
+
+### วิธีที่ 3: เปลี่ยน Detail Level
+
+- View Control Bar ด้านล่าง → เปลี่ยนจาก `Fine` เป็น **`Coarse`**
+- เหล็กจะหายเพราะ Rebar แสดงเฉพาะ Detail Level = Medium/Fine เท่านั้น
