@@ -61,8 +61,9 @@ sidebar:
 | 04  | Modeling Concrete | ขึ้นเสา/คาน/พื้น + Copy 30 ชั้น   |
 | 05  | Reinforcement     | ใส่เหล็กเสริมตามผล ETABS          |
 | 06  | Shear Wall        | วาดผนังรับแรง + เหล็กเสริมผนัง    |
-| 07  | Documentation     | ติด Tag, ถอด BOQ, จัด Sheet       |
-| 08  | Interoperability  | ส่งข้อมูลไป-กลับ ETABS↔Revit      |
-| 09  | Troubleshooting   | แก้ปัญหาที่พบบ่อยพร้อมวิธีแก้     |
+| 07  | Structural Stairs | บันไดคอนกรีต 30 ชั้น + เหล็กบันได |
+| 08  | Documentation     | ติด Tag, ถอด BOQ, จัด Sheet       |
+| 09  | Interoperability  | ส่งข้อมูลไป-กลับ ETABS↔Revit      |
+| 10  | Troubleshooting   | แก้ปัญหาที่พบบ่อยพร้อมวิธีแก้     |
 
 ในบทถัดไป เราจะมาดูหน้าตาโปรแกรม Revit กันก่อนครับ

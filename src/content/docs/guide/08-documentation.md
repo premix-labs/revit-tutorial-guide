@@ -63,16 +63,19 @@ sidebar:
 2.  เลือก Category: **Structural Rebar** -> กด OK
 3.  เลือก Fields:
 
-| ลำดับ | Field Name       | ความหมาย                  |
-| ----- | ---------------- | ------------------------- |
-| 1     | Partition        | หมวด (เสา/คาน)            |
-| 2     | Bar Diameter     | ขนาดเหล็ก (DB10, DB25...) |
-| 3     | Shape            | รูปร่าง                   |
-| 4     | Quantity         | จำนวนเส้น                 |
-| 5     | Total Bar Length | ความยาวรวม (m)            |
+| ลำดับ | Field Name       | ความหมาย                                                |
+| ----- | ---------------- | ------------------------------------------------------- |
+| 1     | Partition        | หมวด (เสา/คาน) — ต้องตั้ง Partition Name ในเหล็กก่อนใช้ |
+| 2     | Bar Diameter     | ขนาดเหล็ก (DB10, DB25...)                               |
+| 3     | Shape            | รูปร่าง                                                 |
+| 4     | Quantity         | จำนวนเส้น                                               |
+| 5     | Total Bar Length | ความยาวรวม (m)                                          |
 
 > [!WARNING]
-> **น้ำหนักเหล็กหายไปไหน?** ใน Revit แบบมาตรฐานจะไม่มี Field `Total Weight` หรือน้ำหนักเหล็กให้โดยตรง (ต้องเขียนสูตร หรือใช้ Plugin) วิธีแก้ยอดนิยมคือให้ดึงข้อมูล `Total Bar Length` นี้ออกมาเป็นตาราง แล้วเอาไปคูณกับ "น้ำหนักเหล็กต่อเมตร" ใน Excel (เช่น DB12 = 0.888 กก./ม.) ครับ!
+> **น้ำหนักเหล็กหายไปไหน?** Revit ไม่มี Field `Total Weight` ให้โดยตรง ต้องดึง `Total Bar Length` ออกมาคูณน้ำหนักต่อเมตรใน Excel เช่น DB12 = **0.888 กก./ม.**, DB20 = **2.47 กก./ม.**, DB25 = **3.85 กก./ม.** ครับ!
+
+> [!TIP]
+> **การตั้ง Partition Name:** เลือกเหล็กในเสา → Properties → **Partition** พิมพ์ชื่อ เช่น `Column` หรือ `Beam` ถึงจะแยก Schedule ได้ตามหมวดครับ
 
 4.  **Sorting:** Sort by `Bar Diameter`
 5.  ติ๊ก **Grand Totals** + **Calculate totals** สำหรับ Total Bar Length

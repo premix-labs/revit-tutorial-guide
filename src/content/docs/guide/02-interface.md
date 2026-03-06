@@ -88,24 +88,28 @@ sidebar:
 
 ## คีย์ลัดที่ต้องจำ (Keyboard Shortcuts)
 
-| คีย์ลัด  | คำสั่ง             | ใช้ในบทที่ |
-| -------- | ------------------ | ---------- |
-| `CL`     | Structural Column  | 04         |
-| `BM`     | Beam               | 04         |
-| `RB`     | Rebar              | 05, 06     |
-| `GR`     | Grid               | 03         |
-| `LL`     | Level              | 03         |
-| `SE`     | Section            | 05, 06, 07 |
-| `DI`     | Dimension          | 07         |
-| `TG`     | Tag by Category    | 07         |
-| `CO`     | Copy               | 03, 04     |
-| `MV`     | Move               | ทั่วไป     |
-| `AR`     | Array              | 03         |
-| `TR`     | Trim/Extend        | 04         |
-| `UN`     | Project Units      | 03         |
-| `PP`     | Properties Palette | ทั่วไป     |
-| `Ctrl+Z` | Undo               | ทั่วไป     |
-| `Ctrl+C` | Copy to Clipboard  | 04         |
-| `Ctrl+P` | Print              | 07         |
+| คีย์ลัด   | คำสั่ง              | ใช้ในบทที่ |
+| --------- | ------------------- | ---------- |
+| `CL`      | Structural Column   | 04         |
+| `BM`      | Beam                | 04         |
+| `RB`      | Rebar               | 05, 06     |
+| `GR`      | Grid                | 03         |
+| `LL`      | Level               | 03         |
+| `SE`      | Section             | 05, 06, 07 |
+| `DI`      | Dimension           | 07         |
+| `TG`      | Tag by Category     | 07         |
+| `CO`      | Copy                | 03, 04     |
+| `MV`      | Move                | ทั่วไป     |
+| `AR`      | Array               | 03         |
+| `TR`      | Trim/Extend         | 04         |
+| `UN`      | Project Units       | 03         |
+| `PP`      | Properties Palette  | ทั่วไป     |
+| `Ctrl+Z`  | Undo                | ทั่วไป     |
+| `Ctrl+C`  | Copy to Clipboard   | 04         |
+| `Ctrl+P`  | Print               | 08         |
+| `HH`      | Hide Element        | 05, 06, 07 |
+| `HR`      | Reset Hidden        | 05, 06, 07 |
+| `VV`/`VG` | Visibility/Graphics | 04, 08     |
+| `ZA`      | Zoom All to Fit     | ทั่วไป     |
 
 ทำความคุ้นเคยกับส่วนต่างๆ เหล่านี้ไว้นะครับ เดี๋ยวเราจะได้ใช้กันตลอดครับ
