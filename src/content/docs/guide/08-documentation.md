@@ -11,7 +11,7 @@ sidebar:
 
 ### วิธีที่ 1: Tag ทีเดียวทั้งแปลน (Tag All)
 
-1.  ไปที่แปลน **1F**
+1.  ไปที่แปลน **F1**
 2.  คำสั่ง **Annotate > Tag All Not Tagged** (ไม่มีคีย์ลัด)
 3.  หน้าต่าง Tag All จะเปิดขึ้น เลือก Category ที่ต้องการ:
     - ✅ **Structural Column Tags** (ป้ายเสา)
@@ -95,14 +95,14 @@ sidebar:
     - `A3 Metric` (กระดาษ A3) สำหรับรูปตัดย่อย
 3.  กรอกข้อมูล Title Block:
     - **Sheet Number:** เช่น `S-101`
-    - **Sheet Name:** เช่น `STRUCTURAL PLAN - 1F`
+    - **Sheet Name:** เช่น `STRUCTURAL PLAN - F1`
 
 ### ระบบการตั้งชื่อ Sheet (แนะนำ)
 
 | Sheet Number | Sheet Name           | เนื้อหา                   |
 | ------------ | -------------------- | ------------------------- |
 | `S-001`      | GENERAL NOTES        | หมายเหตุทั่วไป, สัญลักษณ์ |
-| `S-101`      | STRUCTURAL PLAN - 1F | แปลนโครงสร้างชั้น 1       |
+| `S-101`      | STRUCTURAL PLAN - F1 | แปลนโครงสร้างชั้น 1       |
 | `S-102`      | STRUCTURAL PLAN - 2F | แปลนโครงสร้างชั้น 2       |
 | `S-201`      | COLUMN SCHEDULE      | ตารางเสา + รูปตัด         |
 | `S-301`      | BEAM SCHEDULE        | ตารางคาน + รูปตัด         |
@@ -111,7 +111,7 @@ sidebar:
 ### วาง View ลงใน Sheet
 
 1.  **ลาก (Drag & Drop):** จาก Project Browser ลาก View ที่ต้องการมาวางลงในกระดาษ:
-    - แปลนพื้น (1F Plan)
+    - แปลนพื้น (F1 Plan)
     - รูปตัด (Section)
     - ตาราง (Schedule)
 2.  จัดตำแหน่งให้สวยงาม (Revit จะ Snap ให้อัตโนมัติ)
@@ -120,7 +120,7 @@ sidebar:
 
 เพื่อให้แบบแปลนอ่านง่าย สถาปนิกและวิศวกรทุกคนต้องใช้คำสั่งนี้:
 
-1. เปิดแปลน **1F** (ต้องปิด Properties หรือไม่ได้เลือกอะไรอยู่)
+1. เปิดแปลน **F1** (ต้องปิด Properties หรือไม่ได้เลือกอะไรอยู่)
 2. กดคีย์ลัด **`VV`** (Visibility/Graphic Overrides)
 3. หาหมวด **Structural Columns** ในตะกร้า Model Categories
 4. ไปที่คอลัมน์ **Cut > Patterns** -> คลิกช่อง `Override...`
