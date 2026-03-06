@@ -97,7 +97,7 @@ sidebar:
 1.  คลิกเลือก **ผนัง** ในรูปตัด
 2.  คลิก **Rebar** ใน Contextual Tab **Modify | Walls**
 3.  ตั้งค่า:
-    - **Rebar Shape:** `M_T1 - Straight`
+    - **Rebar Shape:** `M_00` (??????)
     - **Bar Diameter:** `16` (DB16)
     - **Placement Orientation:** `Parallel to Work Plane` (ขนานกับหน้าจอ — เหล็กดิ่งยาวขึ้นข้างบน)
     - **[NEW] Layout:** เปลี่ยนเป็น **`Maximum Spacing`** แล้วใส่ **`500`** (มม.) ทันที (ตั้งค่าก่อนวางเมาส์!)
@@ -107,13 +107,13 @@ sidebar:
 7.  ผลลัพธ์: เหล็ก DB16 @500 mm แนวตั้งทั้ง 2 หน้า (**Each Face**) โดยไม่ต้องมานั่งเลือกทีหลัง ✅
 
 > [!WARNING]
-> **เอาตะขอเหล็กงอออก:** บางครั้งเหล็ก M_T1 จะถูกตั้งค่าให้ออโต้ทำตะของอหัวท้าย (Hook) ซึ่งในแบบเสาและกำแพงลิฟต์มักจะเป็นเหล็กข้อนอกยาวตรง ให้คลิกที่เส้นเหล็ก ไปที่ Properties หมวด Construction -> บรรทัด **Hook At Start** กับ **Hook At End** ให้กดเปลี่ยนเป็น `None` ครับ
+> **เอาตะขอเหล็กงอออก:** เหล็กผนังแนวตั้งเป็นเส้นยาวตรง ใช้ `M_00` ไม่ใช่ M_T1 (M_T1 = สี่เหลี่ยมปิด = Stirrup เท่านั้น!) ถ้าวางเหล็กแล้วเห็นมีตะขอ (Hook) ที่หัวท้าย ให้คลิกที่เส้นเหล็ก ไปที่ Properties หมวด Construction → **Hook At Start** และ **Hook At End** เปลี่ยนเป็น `None` ครับ
 
 ### ขั้นที่ 3: เหล็กแนวนอน (Horizontal — DB12 @150 EF)
 
 1.  คลิกเลือก **ผนัง** อีกครั้ง -> กด **Rebar**
 2.  ตั้งค่า:
-    - **Rebar Shape:** `M_T1 - Straight`
+    - **Rebar Shape:** `M_00` (??????)
     - **Bar Diameter:** `12` (DB12)
     - **Placement Orientation:** `Perpendicular to Cover` (แทงทะลุหน้าจอ — เหล็กวางขวางเป็นจุดๆ)
     - **[NEW] Layout:** เปลี่ยนเป็น **`Maximum Spacing`** แล้วใส่ **`150`** (มม.)
@@ -135,3 +135,4 @@ sidebar:
 
 > [!TIP]
 > ใช้ **Propagate Rebar** เพื่อ Copy เหล็กไปผนังชิ้นอื่นที่มี Type เดียวกันได้ทันที (คลิกขวาที่ Rebar Set -> Propagate)
+
