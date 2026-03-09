@@ -75,7 +75,7 @@ sidebar:
 > [!WARNING]
 > **Structural vs Architectural Wall:** ต้องเลือก **Structure > Wall > Structural Wall** ไม่ใช่ Architecture > Wall! ผนัง Architectural จะไม่มี Analytical Model และส่งไป ETABS ไม่ได้ครับ
 
-### ขั้นที่ 3: Copy ไปชั้นบน
+### ขั้นที่ 4: Copy ไปชั้นบน
 
 1.  เลือกผนังทั้งหมดที่วาด (ลากเมาส์ครอบ -> Filter เลือกเฉพาะ Walls)
 2.  `Ctrl+C` (Copy to Clipboard)
@@ -165,6 +165,8 @@ sidebar:
 > - ด้านหน้า-หลังของผนัง (face orientation) ไม่สลับกัน
 >
 > หลัง propagate ให้เปิด Section ของผนังปลายทางอย่างน้อย 1 ชิ้นเพื่อตรวจว่าเหล็กยังอยู่ครบทั้งสองหน้าและไม่ออกนอก host ก่อนทำต่อทั้งชุด
+>
+> ถ้ายังเป็นช่วงฝึกหรือยังไม่แน่ใจเรื่อง opening / face orientation ให้ใช้ `Copy` เป็นวิธีหลักก่อน เพราะปลอดภัยและคุมผลลัพธ์ได้ง่ายกว่า `Propagate Rebar`
 
 | ใช้ `Propagate Rebar` ได้ | ควรหลีกเลี่ยง `Propagate Rebar` |
 | --- | --- |

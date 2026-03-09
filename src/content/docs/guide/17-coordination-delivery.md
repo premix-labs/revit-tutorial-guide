@@ -68,7 +68,7 @@ sidebar:
 | Drawing Set | PDF | ผู้ตรวจแบบ / ผู้รับเหมา |
 | CAD Set | DWG | ทีมที่ต้องใช้ AutoCAD |
 | Coordination Model | RVT / IFC / NWC | ทีมประสานงาน |
-| Reports | TXT จาก Revit / XLSX ภายนอก / PDF | BOQ / BBS / QA |
+| Reports | CSV/TXT จาก Revit / XLSX ภายนอก / PDF | BOQ / BBS / QA |
 
 ### โฟลเดอร์ที่แนะนำ
 
