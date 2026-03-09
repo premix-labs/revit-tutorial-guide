@@ -165,6 +165,10 @@ sidebar:
 - **Print:** `Ctrl+P` -> เลือกเครื่องพิมพ์ -> เลือก Sheet ที่ต้องการ
 - **Export PDF:** `File > Export > PDF` -> เลือก Sheet -> กด Export
 
+> [!CAUTION]
+> **ให้ export จาก `Sheet` ที่จัดเสร็จแล้ว ไม่ใช่จาก view เดี่ยว**
+> ถ้า export จากแปลนหรือรูปตัดโดยตรง คุณอาจได้ output ที่ไม่มี title block, revision, schedule placement หรือองค์ประกอบหน้าแบบไม่ครบตามชุดส่งจริง
+
 > [!TIP]
 > **Revision Cloud:** ถ้าแก้แบบแล้วต้องส่งใหม่ ให้ใช้ **Annotate > Revision Cloud** วาดรอบพื้นที่ที่แก้ไข พร้อมใส่เลข Revision ที่ Title Block จะได้ติดตาม Version ของแบบได้ครับ
 

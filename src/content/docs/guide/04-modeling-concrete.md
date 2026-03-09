@@ -18,6 +18,12 @@ sidebar:
 > [!IMPORTANT]
 > **ค่าเหล่านี้มาจากผลออกแบบใน ETABS ครับ** ถ้าคุณออกแบบอาคารของตัวเอง ค่าจะไม่เหมือนกัน ให้ใช้ค่าจากโปรเจกต์ ETABS ของคุณแทนนะครับ
 
+> [!NOTE]
+> **สถานะของข้อมูลในบทนี้**
+> - คำสั่ง, เมนู และพฤติกรรมการวาง model เป็น `Revit behavior`
+> - ขนาดเสา, คาน, พื้น และฐานรากในตารางนี้เป็น `project assumption / workshop value`
+> - ถ้าจะนำไปใช้กับงานจริง ให้ยึดค่าจากแบบคำนวณหรือโมเดลวิเคราะห์ของโครงการจริงแทน
+
 ---
 
 ## ✍️ Tutorial: ขึ้นโมเดลคอนโด 30 ชั้น
@@ -44,7 +50,9 @@ sidebar:
 
 1. ไปที่แปลน **F1** (Project Browser > Structural Plans > F1)
 2. คำสั่ง **Structure > Foundation > Isolated**
-3. ใน Properties เลือก Family: `M_Footing-Rectangular` (ถ้าไม่มีให้ Load Family จาก `Structural > Foundations`)
+3. ใน Properties เลือก Family: `M_Footing-Rectangular`
+   - ถ้าไม่มี ให้ไปที่ **Insert > Load Family** แล้วเปิดหมวด `Foundations` ใน library
+   - หรือใช้ **Insert > Load Autodesk Family** แล้วค้นหา footing family ที่ต้องการ
 4. กด **Edit Type** -> **Duplicate** -> ตั้งชื่อ: `F1 (2000x2000x500)`
 5. แก้ค่า Parameter:
    - **Width:** `2000` (mm) หรือ `2.00` (m)
@@ -86,7 +94,7 @@ sidebar:
 #### ขั้นที่ 1: Load Family เสาเข็ม
 
 1. ไปที่ **Insert > Load Family**
-2. เลือก `Structural > Foundations > Piles`
+2. ถ้ายังไม่มี family ของเสาเข็ม ให้ไปที่ **Insert > Load Family** แล้วเปิดหมวด `Foundations > Piles`
 3. เลือก **`M_Concrete-Round-Pile.rfa`** → กด **Open**
 
 #### ขั้นที่ 2: สร้าง Pile Cap Type

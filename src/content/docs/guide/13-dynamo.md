@@ -8,15 +8,42 @@ sidebar:
 ## Dynamo คืออะไร?
 
 > [!WARNING]
-> **บทนี้เป็น workflow เชิงแนวคิด + ตัวอย่าง script**
+> **บทนี้เป็น workflow เชิงแนวคิดพร้อมตัวอย่าง script**
 > Dynamo มีความต่างตามเวอร์ชัน Revit, เวอร์ชัน Dynamo และ package ที่ติดตั้ง
 > เพราะฉะนั้นให้ยึด "ลำดับความคิดของ graph" เป็นหลัก ไม่ควรคาดหวังว่าชื่อ node, path เมนู หรือ parameter จะตรงทุกเครื่องแบบ 100%
 >
-> **Expected failure modes ที่พบบ่อย**
+> **อาการที่พบบ่อยเมื่อ graph ไม่ทำงานตามคาด (Expected failure modes)**
 > - package หรือ node ไม่ตรงเวอร์ชัน
 > - ชื่อ parameter ในโปรเจกต์ไม่ตรงตัวอย่าง
 > - ชื่อ view/level ซ้ำ
 > - graph รันได้แต่ได้ element ไม่ครบเพราะ input list ไม่ตรง
+
+> [!IMPORTANT]
+> **สถานะของบทนี้: Advanced / Optional**
+> Dynamo เป็นเครื่องมือเพิ่มความเร็วและลดงานซ้ำ ไม่ใช่เงื่อนไขจำเป็นสำหรับการเรียน workflow หลักของหนังสือ ถ้ายังไม่คุ้นกับ Revit model พื้นฐาน ให้ย้อนมาอ่านบทนี้ภายหลังได้
+
+> [!NOTE]
+> **Tested environment / สิ่งที่ต้องยืนยันก่อนเริ่ม**
+>
+> | รายการ | สิ่งที่ควรเช็ก |
+> | --- | --- |
+> | Revit | ใช้เวอร์ชันเดียวกับไฟล์งานที่กำลังแก้ |
+> | Dynamo | เวอร์ชันที่มากับ Revit เครื่องนั้น |
+> | Packages | มี package ที่ graph ต้องใช้จริง เช่น `Rhythm`, `Data-Shapes` |
+> | Parameters | ชื่อ parameter ในโปรเจกต์ตรงกับที่ graph อ่าน/เขียน |
+> | Names | ชื่อ level/view เป้าหมายยังไม่ชนของเดิม |
+
+> [!NOTE]
+> **สถานะของข้อมูลในบทนี้**
+> - หลักการต่อ graph และลำดับการคิดเป็น `workflow guidance`
+> - ชื่อ node, package และเมนูบางส่วนเป็น `version-sensitive example`
+> - ก่อนใช้กับไฟล์จริง ควรทดสอบในไฟล์สำเนาหรือไฟล์ทดลองเสมอ
+
+> [!IMPORTANT]
+> **ขอบเขตที่หนังสือยืนยันได้จริงในบทนี้**
+> - ยืนยันได้ว่าบทนี้ใช้แนวคิดของ Dynamo ที่มากับ `Revit 2026` เป็นฐาน
+> - ยืนยันได้ว่าผู้อ่านควรตรวจ package, parameter names และชื่อปลายทางก่อนรัน graph ทุกครั้ง
+> - **ไม่ยืนยัน** ว่าชื่อ node, package หรือ graph ตัวอย่างจะรันได้เหมือนกันทุกเครื่องโดยไม่ปรับ environment
 
 **Dynamo** คือโปรแกรม Visual Programming ที่รวมอยู่ใน Revit ช่วยให้ทำงานซ้ำๆ ได้อัตโนมัติโดยไม่ต้องเขียน Code
 
@@ -109,7 +136,15 @@ Views.All → Filter (Structural Plan) → View.SetName → "F" + Number
 
 ## ✍️ Script 3: นำเข้าข้อมูลจาก Excel
 
-Dynamo อ่านข้อมูลจาก Excel และสร้าง Revit Elements ได้:
+Dynamo สามารถอ่านข้อมูลจาก Excel และใช้สร้าง Revit elements ได้:
+
+> [!IMPORTANT]
+> **Checklist ก่อนเริ่ม Excel import**
+> ให้ตรวจ 4 เรื่องนี้ก่อนรัน graph:
+> - ปิดไฟล์ Excel ต้นทางก่อน เพื่อกันปัญหา read/write lock
+> - หน่วยใน Excel ต้องตรงกับที่ graph คาดไว้
+> - `Level`, `Family Type` หรือชื่ออ้างอิงที่ใช้ใน graph ต้องมีอยู่ในโปรเจกต์แล้ว
+> - ทดลองกับข้อมูล 1 แถวก่อน แล้วค่อยขยายเป็นทั้งชุด
 
 1. **Node: `File Path`** → เลือกไฟล์ `.xlsx`
 2. ใช้ node อ่าน Excel ที่มีอยู่ใน environment ของคุณ เช่น built-in node หรือ node จาก package ที่ติดตั้งเพิ่ม

@@ -1,6 +1,6 @@
 ---
 title: บทนำ (Introduction)
-description: ทำความรู้จักกับ Revit Structure, System Requirements, และ Workflow การทำงานร่วมกับ ETABS
+description: ทำความรู้จักกับ Revit Structure, System Requirements และ workflow การทำงานร่วมกับ ETABS
 sidebar:
   order: 1
 ---
@@ -13,7 +13,7 @@ sidebar:
 
 ### ทำไมต้องใช้ Revit คู่กับ ETABS?
 
-ใน Workflow การออกแบบตึกสูงยุคใหม่ เรามักจะใช้ 2 โปรแกรมนี้คู่กัน:
+ใน workflow การออกแบบตึกสูงยุคใหม่ เรามักจะใช้ 2 โปรแกรมนี้คู่กัน:
 
 1.  **ETABS:** ใช้สำหรับ **"วิเคราะห์และออกแบบ"** (Analysis & Design) หาขนาดหน้าตัด และปริมาณเหล็กเสริมที่ต้องการ
 2.  **Revit:** ใช้สำหรับ **"สร้างแบบก่อสร้าง"** (Documentation/Detailing) และถอดปริมาณงาน (BOQ) ตามผลลัพธ์ที่ได้จาก ETABS
@@ -48,7 +48,7 @@ sidebar:
 
 ---
 
-## Workflow ของคู่มือเล่มนี้
+## workflow ของคู่มือเล่มนี้
 
 เราจะจำลองสถานการณ์เหมือนทำงานจริง โดยใช้โปรเจกต์ **"คอนโดมิเนียมสูง 30 ชั้น"** (30-Story Condo) ที่เราได้ออกแบบไว้ใน ETABS มาขึ้นโมเดลใน Revit
 
