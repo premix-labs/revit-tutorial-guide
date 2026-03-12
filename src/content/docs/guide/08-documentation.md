@@ -1,7 +1,6 @@
 ---
 title: ทำแบบและถอดปริมาณ (Documentation)
 description: การสร้าง Sheet, Tagging และ Schedule (BOQ) แบบละเอียด
-slug: guide/08-documentation
 sidebar:
   order: 9
 ---
