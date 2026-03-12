@@ -1,6 +1,7 @@
 ---
 title: กรอบอ้างอิงของหนังสือ (Reference Basis)
 description: สรุปว่าแต่ละบทอิง Revit behavior, project assumption, engineering standard หรือ workflow guidance ในระดับใด
+slug: reference-basis
 sidebar:
   order: 18
 ---

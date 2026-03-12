@@ -1,6 +1,7 @@
 ---
 title: ประสานงานและส่งมอบงาน (Coordination & Delivery)
 description: workflow ปิดงานจริงตั้งแต่ coordination, clash review, publish, export และ handoff
+slug: guide/17-coordination-delivery
 sidebar:
   order: 16
 ---
@@ -70,6 +71,15 @@ sidebar:
 | Coordination Model | RVT / IFC / NWC | ทีมประสานงาน |
 | Reports | CSV/TXT จาก Revit / XLSX ภายนอก / PDF | BOQ / BBS / QA |
 
+### Delivery Matrix ขั้นต่ำ
+
+| ผู้รับปลายทาง | ควรได้ไฟล์อะไร | สิ่งที่ต้องเช็กก่อนส่ง |
+| --- | --- | --- |
+| ผู้ตรวจแบบ | PDF set + note สรุป revision | sheet number, revision, issue ค้างสำคัญ |
+| ผู้รับเหมา | PDF + DWG ตามข้อตกลง | เปิดไฟล์ได้จริง, scale, tag, mark ตรงกัน |
+| ทีมประสานงาน | RVT/IFC/NWC | links reload แล้ว, origin/publish point ที่ใช้ตรงกัน |
+| ทีม BIM/Operation | RVT + parameter set + IFC ทดสอบ | naming, parameter, linked path และ asset data |
+
 ### โฟลเดอร์ที่แนะนำ
 
 ```text
@@ -102,6 +112,12 @@ Deliverables/
 - `2026-04-02_IFC-ISSUE`
 - `2026-04-15_TENDER`
 
+> [!IMPORTANT]
+> ทุก milestone ที่ archive ควรมีอย่างน้อย 3 อย่างแนบไปด้วย:
+> - ชุดไฟล์ที่ส่งจริง
+> - release note สั้น ๆ ว่า version นี้เปลี่ยนอะไร
+> - known issues หรือข้อจำกัดที่ยังค้างอยู่
+
 ---
 
 ## 5. Handover Checklist
@@ -116,6 +132,36 @@ Deliverables/
 6. PDF/DWG เปิดได้
 7. รายการ issue สำคัญปิดหรือถูกบันทึกไว้
 8. Archive milestone แล้ว
+
+## Release Note Template
+
+ใช้ note สั้น ๆ แนบทุกครั้งที่ส่งมอบหรือ archive milestone:
+
+```text
+Release:
+Base model:
+Included:
+Major changes:
+Known limits:
+Checked by:
+Approved by:
+```
+
+## Approval Gate ก่อนส่งจริง
+
+ก่อนส่ง `Tender`, `IFC`, `Coordination Model` หรือชุดแบบออกภายนอก ให้มีผู้รับผิดชอบตรวจขั้นต่ำแบบนี้:
+
+| เรื่อง | ผู้รับผิดชอบขั้นต่ำ |
+| --- | --- |
+| Model / links / issue status | BIM coordinator หรือ model owner |
+| Sheet / revision / note | discipline lead |
+| Schedule / quantity / BBS | ผู้จัดทำ + ผู้ตรวจ |
+| Export set / file naming / folder | ผู้ส่งมอบ |
+| Release note / known limits | ผู้อนุมัติรอบส่ง |
+
+> [!WARNING]
+> ถ้ายังไม่มี owner และ approver ชัดเจน ชุดส่งมอบนั้นยังไม่ควรถูกมองว่าเป็น release ที่ปิดความเสี่ยงแล้ว
+> สำหรับงานจริง “ไฟล์ส่งออกได้” ยังไม่เท่ากับ “ไฟล์พร้อมส่ง”
 
 ---
 

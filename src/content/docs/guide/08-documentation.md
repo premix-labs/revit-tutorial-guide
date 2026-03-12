@@ -1,13 +1,40 @@
 ---
 title: ทำแบบและถอดปริมาณ (Documentation)
 description: การสร้าง Sheet, Tagging และ Schedule (BOQ) แบบละเอียด
+slug: guide/08-documentation
 sidebar:
   order: 9
 ---
 
 ## 1. การติดป้ายชื่อ (Tagging)
 
-ไม่จำเป็นต้องพิมพ์ Text เอง! ให้ Revit อ่านชื่อจากโมเดล:
+ไม่จำเป็นต้องพิมพ์ข้อความเอง ให้ Revit ดึงชื่อจากโมเดลโดยตรง:
+
+> [!IMPORTANT]
+> **Preflight Checklist ก่อนเริ่มบท Documentation**
+> ตรวจ 3 อย่างนี้ก่อนเสมอ:
+> - มี `Tag Family` ที่ตรงกับ category ที่จะใช้งาน
+> - มี `Title Block` ที่จะใช้จริงในเครื่องหรือใน cloud content
+> - ทีมกำหนดแนวทาง `Export PDF / DWG` และพิกัด (`Coordinates`) ไว้แล้ว
+> ถ้า 3 อย่างนี้ยังไม่พร้อม บทเอกสารจะสะดุดง่ายกว่าบทอื่น แม้ model จะทำมาถูกแล้วก็ตาม
+>
+> [!IMPORTANT]
+> **เช็กก่อน Tag ทั้งแปลน**
+> ให้ลองใช้ `Tag by Category` กับชิ้นส่วน 1 ชิ้นก่อน ถ้าป้ายขึ้นเป็น `?` หรือไม่ขึ้นเลย ให้โหลด tag family ให้ตรง category ก่อน แล้วค่อยใช้ `Tag All Not Tagged`
+
+> [!IMPORTANT]
+> **Office Standard Layer ขั้นต่ำของบท Documentation**
+> ก่อนใช้บทนี้กับงานทีมจริง ควรมีข้อตกลงขั้นต่ำ 5 เรื่อง:
+>
+> | เรื่อง | ทีมควรกำหนดอะไรไว้ล่วงหน้า |
+> | --- | --- |
+> | Title Block | ใช้ family อะไร, ขนาดกระดาษอะไร, ใครเป็นผู้ดูแล |
+> | Sheet naming | รูปแบบ `Sheet Number` และ `Sheet Name` กลางของทีม |
+> | Revision | ใช้ revision sequence แบบไหน และใครอนุมัติก่อนส่ง |
+> | Export coordinates | ใช้ `Shared`, `Project`, หรือ workflow เฉพาะของทีม |
+> | Schedule handoff | ตารางใดส่งเป็น `PDF`, `CSV`, `XLSX` และใครเป็น owner |
+>
+> ถ้ายังไม่มีข้อตกลงนี้ หนังสือยังช่วยทำแบบได้ แต่ output อาจยังไม่เสถียรพอสำหรับการส่งมอบระดับทีม
 
 ### วิธีที่ 1: Tag ทีเดียวทั้งแปลน (Tag All)
 
@@ -98,6 +125,9 @@ sidebar:
 > ให้ใช้หนึ่งในสองทางนี้ก่อน:
 > - **Insert > Load Family** แล้วโหลด Title Block จากโฟลเดอร์ content ที่ติดตั้งไว้
 > - หรือ **Load Autodesk Family** แล้วค้นหา Title Block ที่ต้องการ
+>
+> `Load Autodesk Family` เป็น workflow แบบ cloud จึงอาจต้อง sign in, มีอินเทอร์เน็ต และสิทธิ์เข้าถึง content ก่อน
+> ถ้าใช้ไม่ได้ ให้กลับมาใช้ `Load Family` จาก local library ทันที จะปลอดภัยกว่าสำหรับการฝึกทำตามหนังสือ
 >
 > ชื่อเช่น `A1 Metric` หรือ `A3 Metric` อาจต่างกันตาม language/content pack ดังนั้นให้ยึดขนาดกระดาษและประเภท family เป็นหลัก ไม่ต้องยึดชื่อไฟล์แบบตายตัว
 
@@ -197,11 +227,15 @@ sidebar:
 | **Export**         | `<In session view/sheet set>` | เลือก Sheet ที่ต้องการ         |
 | **DWG Version**    | `AutoCAD 2018` หรือ `2013`    | ใช้งานได้กับ AutoCAD ทุกรุ่น   |
 | **Layer Settings** | `Export layer properties`     | เก็บชั้นสีและเส้นไว้ครบ        |
-| **Coordinate**     | `Shared`                      | ถ้าตั้ง Shared Coordinates ไว้ |
+| **Coordinate**     | `ใช้ตามมาตรฐานทีม`              | เลือก `Shared` เฉพาะเมื่อ project ตั้ง shared coordinates จริง |
 
 > [!WARNING]
 > **อย่าเลือก `Coordinate = Shared` ถ้ายังไม่ได้ตั้ง Shared Coordinates จริง**
 > ถ้าโปรเจกต์ยังไม่ได้ Acquire/Publish Shared Coordinates และยังไม่ได้ตรวจตำแหน่งกับไฟล์อ้างอิง ให้ใช้ค่าพิกัดตามมาตรฐานทีมที่ตกลงกันก่อน เพราะถ้า export ผิดพิกัด ผู้รับปลายทางอาจเปิด DWG แล้วตำแหน่งเพี้ยนทั้งชุดแบบ
+
+> [!WARNING]
+> **ถ้าไม่แน่ใจเรื่องพิกัด ห้ามเดาแล้ว export**
+> การส่ง DWG ด้วยพิกัดผิดอาจทำให้แบบทั้งชุดเลื่อนจากระบบอ้างอิงของทีม และมักแก้ปลายทางยากกว่ากลับมาตรวจให้ชัดก่อนส่งออก
 
 3. คลิก Tab **Export (set)** → เลือก Sheet ที่ต้องการ Export
 4. กด **Next** → เลือก Folder → กด **OK**
